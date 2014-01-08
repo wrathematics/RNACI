@@ -1,0 +1,3 @@
+A set of tools to aid in dealing with R's native C interface.
+
+Think of this as a much dumber, less comprehensive, C version of Rcpp.

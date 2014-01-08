@@ -1,0 +1,5 @@
+useDynLib(Rtools)
+
+# All internal functions
+exportPattern("^[[:alpha:]]+")
+
