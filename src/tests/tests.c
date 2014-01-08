@@ -28,8 +28,8 @@ SEXP test_list(SEXP names)
     R_list_names = make_list_names(2, "abc", "defg");
     R_list = make_list(R_list_names, a, b);
   }
-
-
+  
+  
   UNPT(ptct);
   return R_list;
 }
@@ -54,3 +54,33 @@ SEXP test_print()
   UNPT(ptct);
   return R_NilValue;
 }
+
+
+
+// Dataframes
+SEXP test_df()
+{
+  int ptct = 0;
+  SEXP a, b;
+  SEXP R_list, R_list_names;
+  
+  PT(a = Rvecalloc(2, "int"), ptct);
+  PT(b = Rvecalloc(2, "double"), ptct);
+  
+  INT(a,0) = 1;
+  INT(a,1) = 2;
+  
+  DBL(b,0) = -10.10214;
+  DBL(b,1) = 1.23456;
+  
+  R_list_names = make_list_names(2, "abc", "defg");
+  R_list = make_dataframe_nonames(2, a, b);
+  
+  
+  UNPT(ptct);
+  return R_list;
+}
+
+
+
+
