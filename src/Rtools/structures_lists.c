@@ -31,12 +31,13 @@
 // Build lists
 SEXP make_list_names(int n, ...)
 {
+  PTINIT;
   int i;
   char *tmp;
   SEXP R_list_names;
   va_list listPointer;
   
-  PROTECT(R_list_names = allocVector(STRSXP, n));
+  PT(R_list_names = Rvecalloc(n, "str"));
   
   va_start(listPointer, n);
   
@@ -49,7 +50,7 @@ SEXP make_list_names(int n, ...)
   
   va_end(listPointer);
   
-  UNPROTECT(1);
+  UNPT;
   return R_list_names;
 }
 
@@ -57,12 +58,13 @@ SEXP make_list_names(int n, ...)
 
 SEXP make_list(SEXP R_list_names, ...)
 {
+  PTINIT;
   int i;
   const int n = LENGTH(R_list_names);
   SEXP tmp, R_list;
   va_list listPointer;
   
-  PROTECT(R_list = allocVector(VECSXP, n));
+  PT(R_list = Rvecalloc(n, "vec"));
   
   va_start(listPointer, R_list_names);
   
@@ -77,7 +79,7 @@ SEXP make_list(SEXP R_list_names, ...)
   
   setAttrib(R_list, R_NamesSymbol, R_list_names);
   
-  UNPROTECT(1);
+  UNPT;
   return R_list;
 }
 
@@ -85,11 +87,12 @@ SEXP make_list(SEXP R_list_names, ...)
 
 SEXP make_list_nonames(int n, ...)
 {
+  PTINIT;
   int i;
   SEXP tmp, R_list;
   va_list listPointer;
   
-  PROTECT(R_list = allocVector(VECSXP, n));
+  PT(R_list = Rvecalloc(n, "vec"));
   
   va_start(listPointer, n);
   
@@ -102,7 +105,7 @@ SEXP make_list_nonames(int n, ...)
   
   va_end(listPointer);
   
-  UNPROTECT(1);
+  UNPT;
   return R_list;
 }
 

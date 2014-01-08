@@ -20,8 +20,9 @@
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
 
-#define PT(x,ct) PROTECT((x)); (ct)++
-#define UNPT(ct) (UNPROTECT(ct))
+#define PTINIT int __Rtools_protect_counter=0
+#define PT(x) PROTECT((x)); (__Rtools_protect_counter)++
+#define UNPT (UNPROTECT(__Rtools_protect_counter))
 
 // alloc.c
 SEXP Rvecalloc(int n, char *type);

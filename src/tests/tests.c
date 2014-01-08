@@ -6,13 +6,13 @@
 // Lists
 SEXP test_list(SEXP names)
 {
-  int ptct = 0;
+  PTINIT;
   SEXP a, b;
   SEXP R_list, R_list_names;
   int hasnames = INTEGER(names)[0];
 
-  PT(a = Rvecalloc(2, "int"), ptct);
-  PT(b = Rvecalloc(1, "double"), ptct);
+  PT(a = Rvecalloc(2, "int"));
+  PT(b = Rvecalloc(1, "double"));
 
   INT(a,0) = 1;
   INT(a,1) = 2;
@@ -30,7 +30,7 @@ SEXP test_list(SEXP names)
   }
   
   
-  UNPT(ptct);
+  UNPT;
   return R_list;
 }
 
@@ -39,10 +39,10 @@ SEXP test_list(SEXP names)
 // Printing
 SEXP test_print()
 {
-  int ptct = 0;
+  PTINIT;
   SEXP a;
 
-  PT(a = Rmatalloc(2, 2, "double"), ptct);
+  PT(a = Rmatalloc(2, 2, "double"));
 
   DBL(a,0) = 1;
   DBL(a,1) = 2;
@@ -51,7 +51,7 @@ SEXP test_print()
 
   PRINT(a);
 
-  UNPT(ptct);
+  UNPT;
   return R_NilValue;
 }
 
@@ -60,12 +60,12 @@ SEXP test_print()
 // Dataframes
 SEXP test_df()
 {
-  int ptct = 0;
+  PTINIT;
   SEXP a, b;
   SEXP R_list, R_list_names;
   
-  PT(a = Rvecalloc(2, "int"), ptct);
-  PT(b = Rvecalloc(2, "double"), ptct);
+  PT(a = Rvecalloc(2, "int"));
+  PT(b = Rvecalloc(2, "double"));
   
   INT(a,0) = 1;
   INT(a,1) = 2;
@@ -77,7 +77,7 @@ SEXP test_df()
   R_list = make_dataframe_nonames(2, a, b);
   
   
-  UNPT(ptct);
+  UNPT;
   return R_list;
 }
 

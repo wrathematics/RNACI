@@ -32,6 +32,7 @@
 SEXP Rvecalloc(int n, char *type)
 {
   SEXP RET;
+  PROTECT(RET);
   
   if (strcmp(type, "vec") == 0)
     RET = allocVector(VECSXP, n);
@@ -42,6 +43,7 @@ SEXP Rvecalloc(int n, char *type)
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
     RET = allocVector(STRSXP, n);
   
+  UNPROTECT(1);
   return RET;
 }
 

@@ -30,15 +30,15 @@
 
 void PRINT(SEXP x)
 {
-  int ptct = 0;
+  PTINIT;
   SEXP basePackage;
   
-  PT(basePackage, ptct);
+  PT(basePackage);
   basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
   
   eval( lang2( install("print"), x), basePackage);
   
-  UNPT(ptct);
+  UNPT;
 }
 
 
