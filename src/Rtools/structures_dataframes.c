@@ -76,8 +76,8 @@ SEXP make_dataframe_nonames(int n, ...)
   int i, nrows;
   SEXP R_list;
   SEXP R_rownames;
-  SEXP R_colnames
-  SEXP tmp, R_list;
+  SEXP R_colnames;
+  SEXP tmp;
   va_list listPointer;
   
   // Construct list
@@ -100,11 +100,11 @@ SEXP make_dataframe_nonames(int n, ...)
   // Set colnames
   R_colnames = make_dataframe_default_colnames(n);
   
-  setAttrib(RET, R_ClassSymbol, mkString("data.frame"));
-  setAttrib(RET, R_RowNamesSymbol, R_rownames);
-  setAttrib(RET, R_NamesSymbol, COLNAMES);
+  setAttrib(R_list, R_ClassSymbol, mkString("data.frame"));
+  setAttrib(R_list, R_RowNamesSymbol, R_rownames);
+  setAttrib(R_list, R_NamesSymbol, R_colnames);
   
-  UNPROTECT(5);
-  return RET;
+  UNPROTECT(1);
+  return R_list;
 }
 
