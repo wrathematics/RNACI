@@ -23,15 +23,21 @@
 #define DBLP(x) (REAL(x))
 
 // GC stuff
-#define PTINIT int __Rtools_protect_counter=0
-#define PT(x) PROTECT((x)); (__Rtools_protect_counter)++
-#define UNPT (UNPROTECT(__Rtools_protect_counter))
+#define PTINIT int __Rtools_SEXP_protect_counter=0
+#define PT(x) PROTECT((x)); (__Rtools_SEXP_protect_counter)++
+#define UNPT (UNPROTECT(__Rtools_SEXP_protect_counter))
 
 
 /* Misc stuff */
 
-#define begin {printf(__func__##" Started\n");
-#define end printf(__func__##" Ended\n");}
+#if __STDC_VERSION__ >= 199901L
+#define dbstart printf("%s Started\n", __func__);int __Rtools_debug_printing_counter=0
+#define dbstop printf("%s Ended\n", __func__)
+#else
+#define dbstart int __Rtools_debug_printing_counter=0
+#endif
+
+#define dbshow printf("%d\n", __Rtools_debug_printing_counter);__Rtools_debug_printing_counter++;
 
 
 // alloc.c

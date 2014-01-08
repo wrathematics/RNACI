@@ -76,7 +76,6 @@ SEXP test_df()
   R_list_names = make_list_names(2, "abc", "defg");
   R_list = make_dataframe_nonames(2, a, b);
   
-  
   UNPT;
   return R_list;
 }
