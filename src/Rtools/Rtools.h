@@ -9,6 +9,8 @@
 #include <string.h>
 
 
+/* R stuff */
+
 // Dummy return
 #define RNULL R_NilValue
 
@@ -20,9 +22,17 @@
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
 
+// GC stuff
 #define PTINIT int __Rtools_protect_counter=0
 #define PT(x) PROTECT((x)); (__Rtools_protect_counter)++
 #define UNPT (UNPROTECT(__Rtools_protect_counter))
+
+
+/* Misc stuff */
+
+#define begin {printf(__func__##" Started\n");
+#define end printf(__func__##" Ended\n");}
+
 
 // alloc.c
 SEXP Rvecalloc(int n, char *type);
