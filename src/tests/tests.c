@@ -66,8 +66,10 @@ SEXP test_df()
   SEXP a, b;
   SEXP R_df, R_df_names;
   
-  PT(a = Rvecalloc(2, "int"));
-  PT(b = Rvecalloc(2, "double"));
+  Rvec(a, 2, "int");
+  Rvec(b, 2, "double");
+/*  PT(a = Rvecalloc(2, "int"));*/
+/*  PT(b = Rvecalloc(2, "double"));*/
   
   INT(a,0) = 1;
   INT(a,1) = 2;

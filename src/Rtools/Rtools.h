@@ -11,7 +11,6 @@
 
 /* R stuff */
 
-// Dummy return
 #define RNULL R_NilValue
 
 // R data accessors
@@ -27,8 +26,13 @@
 #define PT(x) PROTECT((x)); (__Rtools_SEXP_protect_counter)++
 #define UNPT (UNPROTECT(__Rtools_SEXP_protect_counter))
 
+#define Rlist(x,n) PT(x=Rvecalloc(n, "vec"))
+#define Rvec(x,n,type) PT(x=Rvecalloc(n, type))
+#define Rmat(x,m,n,type) PT(x=Rmatalloc(m,n,type))
 
 /* Misc stuff */
+
+#define nonzero(x) (x?x:1)
 
 #define true 1
 #define false 0

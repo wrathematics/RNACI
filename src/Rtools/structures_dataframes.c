@@ -62,7 +62,8 @@ SEXP make_dataframe_nonames(int n, ...)
   va_list listPointer;
   
   // Construct list
-  PT(R_df = Rvecalloc(n, "vec"));
+/*  PT(R_df = Rvecalloc(n, "vec"));*/
+  Rlist(R_df, n);
   
   va_start(listPointer, n);
   
@@ -75,16 +76,13 @@ SEXP make_dataframe_nonames(int n, ...)
   
   va_end(listPointer);
   
-  // Set rownames
+  // Set names
   R_rownames = make_dataframe_default_rownames(n);
-  
-  // Set colnames
   R_colnames = make_dataframe_default_colnames(n);
   
   set_list_as_df(R_df);
   set_df_rownames(R_df, R_rownames);
   set_df_colnames(R_df, R_colnames);
-
   
   
   UNPT;
