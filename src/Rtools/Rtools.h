@@ -30,6 +30,11 @@
 
 /* Misc stuff */
 
+#define true 1
+#define false 0
+
+#define is_null(x) (x==NULL)
+
 #if __STDC_VERSION__ >= 199901L
 #define dbstart printf("%s Started\n", __func__);int __Rtools_debug_printing_counter=0
 #define dbstop printf("%s Ended\n", __func__)
@@ -44,8 +49,16 @@
 SEXP Rvecalloc(int n, char *type);
 SEXP Rmatalloc(int m, int n, char *type);
 
+// misc.c
+int is_Rnull(SEXP x);
+int is_Rnan(SEXP x);
+int is_Rna(SEXP x);
+
 // printing.c
 void PRINT(SEXP x);
+
+// structures_dataframes.c
+SEXP make_dataframe_nonames(int n, ...);
 
 // structures_lists.c
 SEXP make_list_names(int n, ...);

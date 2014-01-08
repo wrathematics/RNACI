@@ -8,10 +8,11 @@ USER_CONF = Makeconf
 
 R_OBJS = \
 	Rtools/alloc.o \
+	Rtools/misc.o \
 	Rtools/printing.o \
 	Rtools/structures_dataframes.o \
 	Rtools/structures_lists.o \
-	tests/tests.o
+	package_tests.o
 
 
 OBJECTS = ${R_OBJS}
