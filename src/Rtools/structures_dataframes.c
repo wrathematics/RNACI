@@ -28,44 +28,83 @@
 
 #include "Rtools.h"
 
-
-SEXP make_dataframe(SEXP R_names,)
+// Internals
+SEXP make_dataframe_default_colnames(int n)
 {
-  SEXP RET, PRIMES, POWERS, ROWNAMES, COLNAMES;
+  int i;
+  int ptct = 0;
+  SEXP basePackage;
+  SEXP x;
+  SEXP ret_names;
   
-  // Factor n
-  integer_factorization(INTEGER(n)[0], &pf);
+  PT(basePackage, ptct);
+  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
   
-  // Create the dataframe --- probably shoulda just used eval tbh
-  PROTECT(RET = allocVector(VECSXP, 2));
-  PROTECT(PRIMES = allocVector(INTSXP, pf.num));
-  PROTECT(POWERS = allocVector(INTSXP, pf.num));
-  SET_VECTOR_ELT(RET, 0, PRIMES);
-  SET_VECTOR_ELT(RET, 1, POWERS);
+  PT(x = allocVector(INTSXP, n), ptct);
   
-  for (i=0; i<pf.num; i++)
+  for (i=0; i<n; i++)
+    INT(x,i) = i+1;
+  
+  PT(ret_names, ptct);
+  
+  ret_names = eval( lang2( install("make.names"), x), basePackage);
+  
+  UNPT(ptct);
+  return ret_names;
+}
+
+
+
+SEXP make_dataframe_default_rownames(int n)
+{
+  int i;
+  SEXP ret_names;
+  
+  PROTECT(ret_names = allocVector(INTSXP, n));
+  for(i=0; i<n; i++)
+    INT(ret_names,i) = i + 1;
+  
+  UNPROTECT(1);
+  return ret_names;
+}
+
+
+
+// Actually useful things
+SEXP make_dataframe_nonames(int n, ...)
+{
+  int i, nrows;
+  SEXP R_list;
+  SEXP R_rownames;
+  SEXP R_colnames
+  SEXP tmp, R_list;
+  va_list listPointer;
+  
+  // Construct list
+  PROTECT(R_list = allocVector(VECSXP, n));
+  
+  va_start(listPointer, n);
+  
+  for(i=0; i<n; i++)
   {
-    INTEGER(PRIMES)[i] = pf.factors[i].factor;
-    INTEGER(POWERS)[i] = pf.factors[i].power;
+    tmp = va_arg(listPointer, SEXP);
+    
+    SET_VECTOR_ELT(R_list, i, tmp);
   }
   
-  PROTECT(ROWNAMES = allocVector(INTSXP, pf.num));
-  for(i=0; i<pf.num; i++)
-  {
-    INTEGER(ROWNAMES)[i] = i + 1;
-  }
+  va_end(listPointer);
   
-  PROTECT(COLNAMES = allocVector(STRSXP, 2));
-  SET_STRING_ELT(COLNAMES, 0, mkChar("Prime"));
-  SET_STRING_ELT(COLNAMES, 1, mkChar("Power"));
+  // Set rownames
+  R_rownames = make_dataframe_default_rownames(n);
+  
+  // Set colnames
+  R_colnames = make_dataframe_default_colnames(n);
   
   setAttrib(RET, R_ClassSymbol, mkString("data.frame"));
-  setAttrib(RET, R_RowNamesSymbol, ROWNAMES);
+  setAttrib(RET, R_RowNamesSymbol, R_rownames);
   setAttrib(RET, R_NamesSymbol, COLNAMES);
   
   UNPROTECT(5);
   return RET;
 }
-
-
 
