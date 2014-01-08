@@ -65,5 +65,10 @@ SEXP make_list_names(int n, ...);
 SEXP make_list(SEXP R_list_names, ...);
 SEXP make_list_nonames(int n, ...);
 
+// structures_misc.c
+void set_list_names(SEXP R_list, SEXP R_names);
+void set_df_rownames(SEXP R_df, SEXP R_rownames);
+void set_df_colnames(SEXP R_df, SEXP R_colnames);
+
 
 #endif

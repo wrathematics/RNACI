@@ -57,7 +57,8 @@ SEXP make_list(SEXP R_list_names, ...)
   
   va_end(listPointer);
   
-  setAttrib(R_list, R_NamesSymbol, R_list_names);
+/*  setAttrib(R_list, R_NamesSymbol, R_list_names);*/
+  set_list_names(R_list, R_list_names);
   
   UNPT;
   return R_list;
@@ -88,4 +89,5 @@ SEXP make_list_nonames(int n, ...)
   UNPT;
   return R_list;
 }
+
 
