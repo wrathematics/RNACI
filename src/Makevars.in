@@ -12,7 +12,8 @@ R_OBJS = \
 	Rtools/printing.o \
 	Rtools/structures_dataframes.o \
 	Rtools/structures_lists.o \
-	package_tests.o
+	tests/tests.o \
+	package_examples.o
 
 
 OBJECTS = ${R_OBJS}
