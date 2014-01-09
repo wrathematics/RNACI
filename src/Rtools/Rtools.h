@@ -18,6 +18,9 @@
 #define DBL(x,i) (REAL(x)[i])
 #define STR(x,i) ((char*)CHAR(STRING_ELT(x,i)))
 
+#define MatINT(x,i,j) (INTEGER(x)[i+nrows(x)*j])
+#define MatDBL(x,i,j) (REAL(x)[i+nrows(x)*j])
+
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
 

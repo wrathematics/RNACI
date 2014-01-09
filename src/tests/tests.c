@@ -44,12 +44,11 @@ SEXP test_print()
   R_INIT;
   SEXP a;
   
-  PT(a = Rmatalloc(2, 2, "double"));
+  Rmat(a, 2, 2, "double");
   
-  DBL(a,0) = 1;
-  DBL(a,1) = 2;
-  DBL(a,2) = 3;
-  DBL(a,3) = 4;
+  for (int j=0; j<2; j++)
+    for (int i=0; i<2; i++)
+      MatDBL(a, i, j) = i+j;
   
   PRINT(a);
   
