@@ -13,10 +13,10 @@ SEXP test_list(SEXP names)
   R_INIT;
   SEXP a, b;
   SEXP R_list, R_list_names;
-  int hasnames = INTEGER(names)[0];
+  int hasnames = INT(names,0);
   
-  PT(a = Rvecalloc(2, "int"));
-  PT(b = Rvecalloc(1, "double"));
+  newRvec(a, 2, "int");
+  newRvec(b, 1, "double");
   
   INT(a,0) = 1;
   INT(a,1) = 2;
@@ -37,14 +37,13 @@ SEXP test_list(SEXP names)
 }
 
 
-
 // Printing
 SEXP test_print()
 {
   R_INIT;
   SEXP a;
   
-  Rmat(a, 2, 2, "double");
+  newRmat(a, 2, 2, "double");
   
   for (int j=0; j<2; j++)
     for (int i=0; i<2; i++)
@@ -65,8 +64,8 @@ SEXP test_df()
   SEXP a, b;
   SEXP R_df, R_df_names;
   
-  Rvec(a, 2, "int");
-  Rvec(b, 2, "double");
+  newRvec(a, 2, "int");
+  newRvec(b, 2, "double");
   
   INT(a,0) = 1;
   INT(a,1) = 2;

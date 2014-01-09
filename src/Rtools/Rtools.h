@@ -29,9 +29,10 @@
 #define PT(x) PROTECT((x)); (__Rtools_SEXP_protect_counter)++
 #define R_END (UNPROTECT(__Rtools_SEXP_protect_counter))
 
-#define Rlist(x,n) PT(x=Rvecalloc(n, "vec"))
-#define Rvec(x,n,type) PT(x=Rvecalloc(n, type))
-#define Rmat(x,m,n,type) PT(x=Rmatalloc(m,n,type))
+// Allocations
+#define newRlist(x,n) PT(x=Rvecalloc(n, "vec"))
+#define newRvec(x,n,type) PT(x=Rvecalloc(n, type))
+#define newRmat(x,m,n,type) PT(x=Rmatalloc(m,n,type))
 
 /* Misc stuff */
 

@@ -17,7 +17,7 @@ SEXP make_list_names(int n, ...)
   SEXP R_list_names;
   va_list listPointer;
   
-  PT(R_list_names = Rvecalloc(n, "str"));
+  newRvec(R_list_names, n, "str");
   
   va_start(listPointer, n);
   
@@ -44,7 +44,7 @@ SEXP make_list(SEXP R_list_names, ...)
   SEXP tmp, R_list;
   va_list listPointer;
   
-  PT(R_list = Rvecalloc(n, "vec"));
+  newRlist(R_list, n);
   
   va_start(listPointer, R_list_names);
   
@@ -73,7 +73,7 @@ SEXP make_list_nonames(int n, ...)
   SEXP tmp, R_list;
   va_list listPointer;
   
-  PT(R_list = Rvecalloc(n, "vec"));
+  newRlist(R_list, n);
   
   va_start(listPointer, n);
   

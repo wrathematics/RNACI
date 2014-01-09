@@ -19,13 +19,12 @@ SEXP make_dataframe_default_colnames(int n)
   PT(basePackage);
   basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
   
-  PT(x = Rvecalloc(n, "int"));
+  newRvec(x, n, "int");
   
   for (i=0; i<n; i++)
     INT(x,i) = i+1;
   
   PT(ret_names);
-  
   ret_names = eval( lang2( install("make.names"), x), basePackage);
   
   R_END;
@@ -40,7 +39,8 @@ SEXP make_dataframe_default_rownames(int n)
   int i;
   SEXP ret_names;
   
-  PT(ret_names = Rvecalloc(n, "int"));
+  newRvec(ret_names, n, "int");
+  
   for(i=0; i<n; i++)
     INT(ret_names,i) = i + 1;
   
@@ -62,8 +62,7 @@ SEXP make_dataframe_nonames(int n, ...)
   va_list listPointer;
   
   // Construct list
-/*  PT(R_df = Rvecalloc(n, "vec"));*/
-  Rlist(R_df, n);
+  newRlist(R_df, n);
   
   va_start(listPointer, n);
   
