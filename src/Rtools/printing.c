@@ -10,7 +10,7 @@
 
 void PRINT(SEXP x)
 {
-  PTINIT;
+  R_INIT;
   SEXP basePackage;
   
   PT(basePackage);
@@ -18,7 +18,7 @@ void PRINT(SEXP x)
   
   eval( lang2( install("print"), x), basePackage);
   
-  UNPT;
+  R_END;
 }
 
 

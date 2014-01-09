@@ -9,7 +9,7 @@
 
 int is_Rnull(SEXP x)
 {
-  PTINIT;
+  R_INIT;
   SEXP basePackage;
   SEXP tmp;
   int ret;
@@ -19,7 +19,7 @@ int is_Rnull(SEXP x)
   
   tmp = eval( lang2( install("is.null"), x), basePackage);
   
-  UNPT;
+  R_END;
   return INT(tmp,0);
 }
 
@@ -27,7 +27,7 @@ int is_Rnull(SEXP x)
 
 int is_Rnan(SEXP x)
 {
-  PTINIT;
+  R_INIT;
   SEXP basePackage;
   SEXP tmp;
   int ret;
@@ -37,7 +37,7 @@ int is_Rnan(SEXP x)
   
   tmp = eval( lang2( install("is.nan"), x), basePackage);
   
-  UNPT;
+  R_END;
   return INT(tmp,0);
 }
 
@@ -45,7 +45,7 @@ int is_Rnan(SEXP x)
 
 int is_Rna(SEXP x)
 {
-  PTINIT;
+  R_INIT;
   SEXP basePackage;
   SEXP tmp;
   int ret;
@@ -55,6 +55,43 @@ int is_Rna(SEXP x)
   
   tmp = eval( lang2( install("is.na"), x), basePackage);
   
-  UNPT;
+  R_END;
   return INT(tmp,0);
 }
+
+
+
+int is_double(SEXP x)
+{
+  R_INIT;
+  SEXP basePackage;
+  SEXP tmp;
+  int ret;
+  
+  PT(basePackage);
+  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  
+  tmp = eval( lang2( install("is.double"), x), basePackage);
+  
+  R_END;
+  return INT(tmp,0);
+}
+
+
+
+int is_integer(SEXP x)
+{
+  R_INIT;
+  SEXP basePackage;
+  SEXP tmp;
+  int ret;
+  
+  PT(basePackage);
+  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  
+  tmp = eval( lang2( install("is.integer"), x), basePackage);
+  
+  R_END;
+  return INT(tmp,0);
+}
+

@@ -22,9 +22,9 @@
 #define DBLP(x) (REAL(x))
 
 // GC stuff
-#define PTINIT int __Rtools_SEXP_protect_counter=0
+#define R_INIT int __Rtools_SEXP_protect_counter=0
 #define PT(x) PROTECT((x)); (__Rtools_SEXP_protect_counter)++
-#define UNPT (UNPROTECT(__Rtools_SEXP_protect_counter))
+#define R_END (UNPROTECT(__Rtools_SEXP_protect_counter))
 
 #define Rlist(x,n) PT(x=Rvecalloc(n, "vec"))
 #define Rvec(x,n,type) PT(x=Rvecalloc(n, type))
@@ -57,6 +57,8 @@ SEXP Rmatalloc(int m, int n, char *type);
 int is_Rnull(SEXP x);
 int is_Rnan(SEXP x);
 int is_Rna(SEXP x);
+int is_double(SEXP x);
+int is_integer(SEXP x);
 
 // printing.c
 void PRINT(SEXP x);

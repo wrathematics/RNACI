@@ -9,7 +9,7 @@
 
 SEXP example_df()
 {
-  PTINIT;
+  R_INIT;
   SEXP a, b;
   SEXP R_df, R_df_names;
   
@@ -25,7 +25,7 @@ SEXP example_df()
   R_df_names = make_list_names(2, "abc", "defg");
   R_df = make_dataframe_nonames(2, a, b);
   
-  UNPT;
+  R_END;
   return R_df;
 }
 

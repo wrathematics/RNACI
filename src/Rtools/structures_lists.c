@@ -11,7 +11,7 @@
 // Build lists
 SEXP make_list_names(int n, ...)
 {
-  PTINIT;
+  R_INIT;
   int i;
   char *tmp;
   SEXP R_list_names;
@@ -30,7 +30,7 @@ SEXP make_list_names(int n, ...)
   
   va_end(listPointer);
   
-  UNPT;
+  R_END;
   return R_list_names;
 }
 
@@ -38,7 +38,7 @@ SEXP make_list_names(int n, ...)
 
 SEXP make_list(SEXP R_list_names, ...)
 {
-  PTINIT;
+  R_INIT;
   int i;
   const int n = LENGTH(R_list_names);
   SEXP tmp, R_list;
@@ -60,7 +60,7 @@ SEXP make_list(SEXP R_list_names, ...)
 /*  setAttrib(R_list, R_NamesSymbol, R_list_names);*/
   set_list_names(R_list, R_list_names);
   
-  UNPT;
+  R_END;
   return R_list;
 }
 
@@ -68,7 +68,7 @@ SEXP make_list(SEXP R_list_names, ...)
 
 SEXP make_list_nonames(int n, ...)
 {
-  PTINIT;
+  R_INIT;
   int i;
   SEXP tmp, R_list;
   va_list listPointer;
@@ -86,7 +86,7 @@ SEXP make_list_nonames(int n, ...)
   
   va_end(listPointer);
   
-  UNPT;
+  R_END;
   return R_list;
 }
 

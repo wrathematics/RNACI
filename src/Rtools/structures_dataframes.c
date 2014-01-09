@@ -10,7 +10,7 @@
 // Internals
 SEXP make_dataframe_default_colnames(int n)
 {
-  PTINIT;
+  R_INIT;
   int i;
   SEXP basePackage;
   SEXP x;
@@ -28,7 +28,7 @@ SEXP make_dataframe_default_colnames(int n)
   
   ret_names = eval( lang2( install("make.names"), x), basePackage);
   
-  UNPT;
+  R_END;
   return ret_names;
 }
 
@@ -36,7 +36,7 @@ SEXP make_dataframe_default_colnames(int n)
 
 SEXP make_dataframe_default_rownames(int n)
 {
-  PTINIT;
+  R_INIT;
   int i;
   SEXP ret_names;
   
@@ -44,7 +44,7 @@ SEXP make_dataframe_default_rownames(int n)
   for(i=0; i<n; i++)
     INT(ret_names,i) = i + 1;
   
-  UNPT;
+  R_END;
   return ret_names;
 }
 
@@ -53,7 +53,7 @@ SEXP make_dataframe_default_rownames(int n)
 // Actually useful things
 SEXP make_dataframe_nonames(int n, ...)
 {
-  PTINIT;
+  R_INIT;
   int i, nrows;
   SEXP R_df;
   SEXP R_rownames;
@@ -85,7 +85,7 @@ SEXP make_dataframe_nonames(int n, ...)
   set_df_colnames(R_df, R_colnames);
   
   
-  UNPT;
+  R_END;
   return R_df;
 }
 

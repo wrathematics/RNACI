@@ -29,6 +29,7 @@ SEXP Rvecalloc(int n, char *type)
 SEXP Rmatalloc(int m, int n, char *type)
 {
   SEXP RET;
+  PROTECT(RET);
   
   if (strcmp(type, "vec") == 0)
     RET = allocMatrix(VECSXP, m, n);
@@ -39,6 +40,7 @@ SEXP Rmatalloc(int m, int n, char *type)
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
     RET = allocMatrix(STRSXP, m, n);
   
+  UNPROTECT(1);
   return RET;
 }
 
