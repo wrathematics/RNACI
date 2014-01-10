@@ -5,8 +5,8 @@
 // Copyright 2014, Schmidt
 
 
-#ifndef __RTOOLS_H__
-#define __RTOOLS_H__
+#ifndef __SEXPTOOLS_H__
+#define __SEXPTOOLS_H__
 
 
 #include <R.h>
@@ -32,9 +32,9 @@
 #define DBLP(x) (REAL(x))
 
 // GC stuff
-#define R_INIT int __Rtools_SEXP_protect_counter=0
-#define PT(x) PROTECT((x)); (__Rtools_SEXP_protect_counter)++
-#define R_END (UNPROTECT(__Rtools_SEXP_protect_counter))
+#define R_INIT int __SEXPtools_SEXP_protect_counter=0
+#define PT(x) PROTECT((x)); (__SEXPtools_SEXP_protect_counter)++
+#define R_END (UNPROTECT(__SEXPtools_SEXP_protect_counter))
 
 // Allocations
 #define newRlist(x,n) PT(x=Rvecalloc(n, "vec"))
@@ -51,13 +51,13 @@
 #define is_null(x) (x==NULL)
 
 #if __STDC_VERSION__ >= 199901L
-#define dbstart printf("%s Started\n", __func__);int __Rtools_debug_printing_counter=0
+#define dbstart printf("%s Started\n", __func__);int __SEXPtools_debug_printing_counter=0
 #define dbstop printf("%s Ended\n", __func__)
 #else
-#define dbstart int __Rtools_debug_printing_counter=0
+#define dbstart int __SEXPtools_debug_printing_counter=0
 #endif
 
-#define dbshow printf("%d\n", __Rtools_debug_printing_counter);__Rtools_debug_printing_counter++;
+#define dbshow printf("%d\n", __SEXPtools_debug_printing_counter);__SEXPtools_debug_printing_counter++;
 
 
 // alloc.c

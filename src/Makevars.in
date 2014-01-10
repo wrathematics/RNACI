@@ -7,12 +7,12 @@ USER_CONF = Makeconf
 
 
 R_OBJS = \
-	Rtools/alloc.o \
-	Rtools/misc.o \
-	Rtools/printing.o \
-	Rtools/structures_dataframes.o \
-	Rtools/structures_lists.o \
-	Rtools/structures_misc.o \
+	SEXPtools/alloc.o \
+	SEXPtools/misc.o \
+	SEXPtools/printing.o \
+	SEXPtools/structures_dataframes.o \
+	SEXPtools/structures_lists.o \
+	SEXPtools/structures_misc.o \
 	tests/tests.o \
 	package_examples.o
 

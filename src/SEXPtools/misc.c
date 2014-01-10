@@ -5,7 +5,7 @@
 // Copyright 2014, Schmidt
 
 
-#include "Rtools.h"
+#include "SEXPtools.h"
 
 int is_Rnull(SEXP x)
 {

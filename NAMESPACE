@@ -1,4 +1,4 @@
-useDynLib(Rtools)
+useDynLib(SEXPtools)
 
 # All internal functions
 exportPattern("^[[:alpha:]]+")

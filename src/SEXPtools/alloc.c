@@ -5,7 +5,7 @@
 // Copyright 2014, Schmidt
 
 
-#include "Rtools.h"
+#include "SEXPtools.h"
 
 
 SEXP Rvecalloc(int n, char *type)

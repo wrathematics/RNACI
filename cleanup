@@ -10,7 +10,7 @@ rm -rf ./src/*.dylib
 rm -rf ./src/*.so
 rm -rf ./src/*.o
 rm -rf ./src/tests/*.o
-rm -rf ./src/Rtools/*.o
+rm -rf ./src/SEXPtools/*.o
 rm -rf ./src/*.d
 rm -rf ./src/*.dll
 rm -rf ./src/*.a

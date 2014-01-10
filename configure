@@ -581,7 +581,7 @@ PACKAGE_STRING='Rtools 0.1'
 PACKAGE_BUGREPORT=''
 PACKAGE_URL=''
 
-ac_unique_file="src/Rtools/printing.c"
+ac_unique_file="src/SEXPtools/printing.c"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
 OBJEXT

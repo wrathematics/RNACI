@@ -1,11 +1,12 @@
-Package: Rtools
-Title: Rtools
+Package: SEXPtools
+Title: SEXPtools
 Version: 0.1-0
 Date: 2014-1-7
 Depends: R (>= 2.14.0), utils, methods
 Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"), 
         email = "schmidt@math.utk.edu"))
-Description: Rtools
+Description: Tools for simplifying R's native C interface.  Like a dumber,
+        less comprehensive, C version of Rcpp.
 License: BSD 2-clause License
 NeedsCompilation: Yes
 Author: Drew Schmidt [aut, cre]

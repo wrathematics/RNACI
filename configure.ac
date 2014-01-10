@@ -2,7 +2,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([Rtools], [0.1])
-AC_CONFIG_SRCDIR([src/Rtools/printing.c])
+AC_CONFIG_SRCDIR([src/SEXPtools/printing.c])
 
 # Checks for programs.
 AC_PROG_CC

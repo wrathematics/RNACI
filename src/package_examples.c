@@ -4,7 +4,7 @@
 
 // Copyright 2013, Schmidt
 
-#include "Rtools/Rtools.h"
+#include "SEXPtools/SEXPtools.h"
 
 
 SEXP example_df()
