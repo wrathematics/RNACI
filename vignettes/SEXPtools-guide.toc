@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Purpose}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}License}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Installation}{1}{subsection.1.3}
+\contentsline {section}{\numberline {2}Package Use}{1}{section.2}
+\contentsline {section}{\numberline {3}Q\&A}{1}{section.3}
+\contentsline {paragraph}{Why make this?}{1}{section*.2}
+\contentsline {paragraph}{How does this differe from {\fontseries {b}\selectfont Rcpp}?}{1}{section*.3}
+\contentsline {paragraph}{Why would I want to use it?}{1}{section*.4}
