@@ -5,6 +5,8 @@
 
 \input{./include/preamble}
 
+\newcommand{\thispackage}{\pkg{SEXPtools}}
+
 
 \author{Drew Schmidt}
 \title{Guide to the \pkg{SEXPtools} Package\\[.4cm]}
@@ -20,6 +22,15 @@
 \maketitle
 \pagenumbering{roman}
 \tableofcontents
+
+
+\input{./include/00-copyright}
+\newpage
+\input{./include/00-acknowledgement}
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 
 \bodyheadfoot

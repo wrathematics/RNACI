@@ -1,5 +1,5 @@
 A set of tools to aid in dealing with R's native C interface.  Think of this 
 as a much dumber, less comprehensive, C version of Rcpp.
 
-This is bundled as an R package only for demonstration purposes.  See
-src/tests and demo/ for example usage.
+This package can be used much in the same way as Rcpp.  The package vignette
+explains how one may do so.  See src/tests and demo/ for example usage.

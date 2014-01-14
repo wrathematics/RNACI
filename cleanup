@@ -7,13 +7,17 @@ rm -rf ./src/Makevars
 rm -rf ./src/Makedeps
 rm -rf ./src/Makeconf
 rm -rf ./src/*.dylib
-rm -rf ./src/*.so
+rm -rf ./src/*.so*
 rm -rf ./src/*.o
-rm -rf ./src/tests/*.o
-rm -rf ./src/SEXPtools/*.o
 rm -rf ./src/*.d
 rm -rf ./src/*.dll
 rm -rf ./src/*.a
 rm -rf ./src/*.rc
 rm -rf ./src/*.rds
-
+rm -rf ./src/SLmake.inc
+rm -rf ./src/SEXPtools/*.o
+rm -rf ./src/SEXPtools/*.oo
+rm -rf ./src/tests/*.o
+rm -rf ./src-*
+rm -rf ./inst/etc*
+rm -rf ./inst/lib*
