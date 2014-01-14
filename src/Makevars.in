@@ -36,10 +36,14 @@ userLibrary: $(R_SEXPtools)
 
 SLmake:
 		@rm -rf SLmake.inc
-		@echo "### Added by Makevars" > SLmake.inc
+		@echo "CDEFS = $(CDEFS)" >> SLmake.inc
+		@echo "PKG_CPPFLAGS = $(PKG_CPPFLAGS)" >> SLmake.inc
+		@echo "PKG_CFLAGS = $(PKG_CFLAGS)" >> SLmake.inc
+		@echo "PKG_FFLAGS = $(PKG_FFLAGS)" >> SLmake.inc
 		@echo "R_SEXPtools = $(R_SEXPtools)" >> SLmake.inc
 		@echo "include $(MkInclude)" >> SLmake.inc
 		@echo "" >> SLmake.inc
+		@cat SLmake.inc.org >> SLmake.inc
 
 
 

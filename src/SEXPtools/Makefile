@@ -1,12 +1,13 @@
 include ../SLmake.inc
 
 
-sexptools = SEXPtools/alloc.o \
+sexptools = 
+	SEXPtools/alloc.o \
 	SEXPtools/misc.o \
 	SEXPtools/printing.o \
 	SEXPtools/structures_dataframes.o \
 	SEXPtools/structures_lists.o \
-	SEXPtools/structures_misc.o \
+	SEXPtools/structures_misc.o
 
 
 PKG_sexptools = $(sexptools:.o=.oo)
@@ -14,8 +15,12 @@ PKG_sexptools = $(sexptools:.o=.oo)
 
 lib : all
 
+$(PKG_sexptools): SEXPtools.h
+
 all : $(PKG_sexptools) 
-	$(ARCH) $(ARCHFLAGS) $(PKG_sexptools)
+	$(ARCH) $(ARCHFLAGS) ./$(SEXPTOOLSLIB) \
+		$(PKG_sexptools)
+	$(RANLIB) ../$(SEXPTOOLSLIB)
 
 #  -----------------------
 #  Delete the object files
