@@ -1,10 +1,15 @@
 ##########################################################
 
-PKG_CPPFLAGS = @DEFS@
+EXT_LDFLAGS = @EXT_LDFLAGS@
+EXT_LIBS = @EXT_LIBS@
+EXT_OBJS = @EXT_OBJS@
+
+### R Default Makeconf
+MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
+
+
 PKG_CFLAGS = -w
-
-USER_CONF = Makeconf
-
+PKG_LIBS = $(EXT_LDFLAGS) $(FLIBS)
 
 R_OBJS = \
 	SEXPtools/alloc.o \
@@ -15,11 +20,12 @@ R_OBJS = \
 	SEXPtools/structures_misc.o \
 	tests/tests.o \
 	package_examples.o
-
 R_SEXPtools = libsexptools.a
+OBJECTS = ${R_OBJS}
 BUILD_LIBS = $(SHLIB) $(EXT_LIBS)
 
-OBJECTS = ${R_OBJS}
+USER_CONF = Makeconf
+
 
 all: $(BUILD_LIBS)
         @echo "R_SEXPtools = lib${R_ARCH}/$(R_SEXPtools)" >> $(USER_CONF)
@@ -34,7 +40,6 @@ SLmake:
 		@echo "R_SEXPtools = $(R_SEXPtools)" >> SLmake.inc
 		@echo "include $(MkInclude)" >> SLmake.inc
 		@echo "" >> SLmake.inc
-		@cat SLmake.inc.org >> SLmake.inc
 
 
 

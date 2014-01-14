@@ -584,6 +584,8 @@ PACKAGE_URL=''
 ac_unique_file="src/SEXPtools/printing.c"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+EXT_LIBS
+EXT_LDFLAGS
 OBJEXT
 EXEEXT
 ac_ct_CC
@@ -640,7 +642,8 @@ CC
 CFLAGS
 LDFLAGS
 LIBS
-CPPFLAGS'
+CPPFLAGS
+EXT_LDFLAGS'
 
 
 # Initialize some variables set by options.
@@ -1254,6 +1257,7 @@ Some influential environment variables:
   LIBS        libraries to pass to the linker, e.g. -l<library>
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
+  EXT_LDFLAGS external linking flags of external libraries
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -2522,6 +2526,36 @@ if test -z "${R_HOME}"; then
   echo "could not determine R_HOME"
   exit 1
 fi
+
+
+if ${EXT_LDFLAGS+:} false; then :
+
+else
+   EXT_LDFLAGS=""
+fi
+if test "X$EXT_LDFLAGS" = "X" ; then
+  EXT_LDFLAGS="\$(LAPACK_LIBS) \$(BLAS_LIBS)"
+  EXT_OBJS="\$(R_SEXPtools)"
+  EXT_LIBS="userLibrary"
+else
+  EXT_OBJS=""
+  EXT_LIBS=""
+fi
+
+echo " "
+echo "****************** Results of pbdSLAP package configure *****************"
+echo " "
+echo ">> EXT_LDFLAGS = ${EXT_LDFLAGS}"
+echo ">> EXT_OBJS = ${EXT_OBJS}"
+echo ">> EXT_LIBS = ${EXT_LIBS}"
+echo ">> CDEFS = ${CDEFS}"
+echo ">> CDEFS_CHECK = ${CDEFS_CHECK}"
+echo ">> SPMD_CPPFLAGS = ${SPMD_CPPFLAGS}"
+echo ">> SPMD_LDFLAGS = ${SPMD_LDFLAGS}"
+echo " "
+echo "*************************************************************************"
+echo " "
+
 
 ac_config_files="$ac_config_files src/Makevars"
 
