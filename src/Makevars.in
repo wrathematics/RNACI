@@ -22,7 +22,7 @@ BUILD_LIBS = $(SHLIB) $(EXT_LIBS)
 OBJECTS = ${R_OBJS}
 
 all: $(BUILD_LIBS)
-        @echo "R_SLAP = lib${R_ARCH}/$(R_SLAP)" >> $(USER_CONF)
+        @echo "R_SEXPtools = lib${R_ARCH}/$(R_SEXPtools)" >> $(USER_CONF)
 
 $(SHLIB): $(OBJECTS)
 
@@ -31,7 +31,7 @@ userLibrary: $(R_SEXPtools)
 SLmake:
 		@rm -rf SLmake.inc
 		@echo "### Added by Makevars" > SLmake.inc
-		@echo "R_SLAP = $(R_SLAP)" >> SLmake.inc
+		@echo "R_SEXPtools = $(R_SEXPtools)" >> SLmake.inc
 		@echo "include $(MkInclude)" >> SLmake.inc
 		@echo "" >> SLmake.inc
 		@cat SLmake.inc.org >> SLmake.inc
