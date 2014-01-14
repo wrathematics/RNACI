@@ -1,9 +1,11 @@
 #!/bin/sh
 
+fil=`ls | grep "[.]Rnw"`
+
 rm *.aux *.bbl *.blg *.log *.out *.toc
 
-pdflatex memuse-guide.Rnw
-pdflatex memuse-guide.Rnw
+pdflatex $fil
+pdflatex $fil
 
 Rscript -e "tools::compactPDF('.', gs_quality='ebook')"
 
