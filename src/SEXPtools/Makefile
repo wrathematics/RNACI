@@ -1,13 +1,13 @@
 include ../SLmake.inc
 
 
-sexptools = 
-	SEXPtools/alloc.o \
-	SEXPtools/misc.o \
-	SEXPtools/printing.o \
-	SEXPtools/structures_dataframes.o \
-	SEXPtools/structures_lists.o \
-	SEXPtools/structures_misc.o
+sexptools = \
+	alloc.o \
+	misc.o \
+	printing.o \
+	structures_dataframes.o \
+	structures_lists.o \
+	structures_misc.o
 
 
 PKG_sexptools = $(sexptools:.o=.oo)
@@ -18,7 +18,7 @@ lib : all
 $(PKG_sexptools): SEXPtools.h
 
 all : $(PKG_sexptools) 
-	$(ARCH) $(ARCHFLAGS) ./$(SEXPTOOLSLIB) \
+	$(ARCH) $(ARCHFLAGS) ../$(SEXPTOOLSLIB) \
 		$(PKG_sexptools)
 	$(RANLIB) ../$(SEXPTOOLSLIB)
 
