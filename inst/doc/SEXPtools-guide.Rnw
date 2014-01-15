@@ -39,8 +39,10 @@
 \setcounter{page}{1}
 \pagestyle{fancy}
 
-\input{./include/01-introduction}
-\input{./include/02-use}
-\input{./include/03-questions}
+\input{./include/01-intro}
+\input{./include/02-linking}
+\input{./include/03-specification}
+\input{./include/04-use}
+\input{./include/05-questions}
 
 \end{document}
