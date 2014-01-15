@@ -10,7 +10,7 @@ Probably my biggest motivator was fun; I just wanted to make something like this
 more pragmatic reason is that part of my workload (for very non-standard reasons not worth 
 getting into) prevents me from using \pkg{Rcpp}.  This leaves me stuck with the native \C\ 
 interface for \R.  And I don't like \R's native \C\ interface.  This is my attempt to 
-make that interface (slightly) more friendly.
+make that interface (slightly) more friendly and convenient to work with.
 
 
 \subsection{Why the strange name?}
@@ -43,11 +43,23 @@ These things may not matter in the least to you.  If that's the case, then you
 may well be better served by \pkg{Rcpp}.
 
 
-
 \subsection{Why would I want to use it?}
 
 You may well not.  But it is an option available to you.
 
 
 \subsection{How would I use \thispackage\ in a package?}
+
+Assuming that you have some compiled code you have or want to create to use with a 
+package, you simply link with \thispackage\ and then wrap that compiled code with 
+the utilities provided by \thispackage.  For the former, see \secref{linking}, 
+and for the latter, see \secref{specification} and \secref{example}.
+
+Philosophically, you should never have the bulk of the work of a function (of any
+importance) be handled by the \R\ interface (including \thispackage's version of it).
+If you do, then your code can never (easily) have a life outside of \R.  That may sound fine to you
+now, but if you ever decide to perform some of your work outside of \R, then you can't take
+your compiled code with you.  This is just bad practice and shortsightedness.  
+
+
 
