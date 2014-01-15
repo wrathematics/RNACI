@@ -13,6 +13,14 @@ interface for \R.  And I don't like \R's native \C\ interface.  This is my attem
 make that interface (slightly) more friendly.
 
 
+\subsection{Why the strange name?}
+
+Every \R\ object (underneath, in the \C\ interface) is an \code{SEXP} (short for
+S-expression) object, which is a struct pointer.  This is explained in the
+\href{http://cran.r-project.org/doc/manuals/R-ints.html#SEXPs}{R Internals} 
+manual.
+
+
 \subsection{How does this differ from \pkg{Rcpp}?}
 Each of these packages makes an attempt at solving a serious problem with utilizing compiled
 code from \R: the native interface for \proglang{C} code in \R\ sucks.  There are huge 
