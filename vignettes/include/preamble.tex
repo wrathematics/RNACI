@@ -82,20 +82,49 @@
 
 
 \lstdefinelanguage{ft}{
-  language=[90]Fortran,
-  basicstyle=\ttfamily,
-                      keywordstyle=\color{blue},
-commentstyle=\color{dkgreen},
-  morecomment=[l]{!\ }
+	language=[90]Fortran,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	morecomment=[l]{!\ }
+}
+
+\lstdefinelanguage{fanC}{
+	language=[ANSI]C,
+	basicstyle=\ttfamily\color{black},
+	backgroundcolor=\color{grayish},
+	frame=single,
+	breaklines=true,
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen}\itshape,
+	stringstyle=\color{mauve},
+	numbers=none,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	rulecolor=\color{gray},
+	tabsize=4,
+	captionpos=t,
+	morecomment=[l]{//},
+	morekeywords={newRvec,newRlist, newRmat, R_INIT, PT, R_END, INTP, DBLP, 
+INT, DBL, STR, MatINT, matDBL, RNULL, is_null, is_Rnull, is_Rnan, is_Rna, 
+is_double, is_integer, PRINT}
 }
 
 
 
-\lstset{numbers=none,numberstyle=\footnotesize\ttfamily,
-        frame=single,frameround=tttt,language=R,
-        showspaces=false,showstringspaces=false,
-        breaklines=true,breakatwhitespace=true,
-        basicstyle=\small\ttfamily}
+\lstset{
+	numbers=none,
+	numberstyle=\footnotesize\ttfamily,
+	frame=single,
+	frameround=tttt,
+	showspaces=false,
+	showstringspaces=false,
+	breaklines=true,
+	breakatwhitespace=true,
+	basicstyle=\small\ttfamily
+}
+  
 %\lstset{literate={<-}{{$\leftarrow$}}1}
 \makeatletter
 \let\Code\@undefined

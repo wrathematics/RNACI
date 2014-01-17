@@ -12,7 +12,6 @@
 \title{Guide to the \pkg{SEXPtools} Package\\[.4cm]}
 
 
-
 \begin{document}
 
 \prebodyheadfoot
