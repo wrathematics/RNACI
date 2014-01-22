@@ -10,7 +10,7 @@ if(length(files) > 0)
   file.copy(files, dest, overwrite = TRUE, recursive = TRUE)
 }
 
-### For lib
+### For lib/
 file <- "libsexptools.a"
 
 # External libraries do not build "libsexptools.a"
@@ -22,7 +22,7 @@ if(file.exists(file))
   file.copy(file, dest, overwrite = TRUE)
 }
 
-### For etc
+### For etc/
 file <- "Makeconf"
 
 if(file.exists(file))
@@ -33,3 +33,12 @@ if(file.exists(file))
   file.copy(file, dest, overwrite = TRUE)
 }
 
+### For include/
+file <- "SEXPtools/SEXPtools.h"
+
+if(file.exists(file))
+{
+  dest <- file.path(R_PACKAGE_DIR, "include")
+  dir.create(dest, recursive = TRUE, showWarnings = FALSE)
+  file.copy(file, dest, overwrite = TRUE)
+}
