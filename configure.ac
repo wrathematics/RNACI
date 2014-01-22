@@ -42,5 +42,6 @@ echo " "
 
 # Substitute
 AC_SUBST(EXT_LIBS)
+AC_SUBST(EXT_OBJS)
 AC_OUTPUT(src/Makevars)
 

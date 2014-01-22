@@ -13,7 +13,7 @@ PKG_LIBS = $(EXT_LDFLAGS) $(FLIBS)
 
 R_OBJS = \
 	SEXPtools/alloc.o \
-    SEXPtools/c11.o \
+	SEXPtools/c11.o \
 	SEXPtools/misc.o \
 	SEXPtools/printing.o \
 	SEXPtools/structures_dataframes.o \
@@ -29,13 +29,7 @@ USER_CONF = Makeconf
 
 
 all: $(BUILD_LIBS)
-        @echo "CDEFS = $(CDEFS)" >> $(USER_CONF)
-        @echo "CDEFS_CHECK = $(CDEFS_CHECK)" >> $(USER_CONF)
-        @echo "PKG_CPPFLAGS = $(PKG_CPPFLAGS)" >> $(USER_CONF)
-        @echo "PKG_CFLAGS = $(PKG_CFLAGSAGS)" >> $(USER_CONF)
-        @echo "PKG_FFLAGS = $(PKG_FFLAGS)" >> $(USER_CONFF)
-        @echo "PKG_LIBS = $(PKG_LIBS)" >> $(USER_CONF)
-        @echo "R_SEXPTOOLS = lib${R_ARCH}/$(R_SEXPTOOLS)" >> $(USER_CONF)
+		@echo "R_SEXPTOOLS = lib${R_ARCH}/$(R_SEXPTOOLS)" > $(USER_CONF)
 
 $(SHLIB): $(OBJECTS)
 
@@ -43,11 +37,7 @@ userLibrary: $(R_SEXPTOOLS)
 
 SLmake:
 		@rm -rf SLmake.inc
-		@echo "CDEFS = $(CDEFS)" >> SLmake.inc
-		@echo "PKG_CPPFLAGS = $(PKG_CPPFLAGS)" >> SLmake.inc
-		@echo "PKG_CFLAGS = $(PKG_CFLAGS)" >> SLmake.inc
-		@echo "PKG_FFLAGS = $(PKG_FFLAGS)" >> SLmake.inc
-		@echo "R_SEXPTOOLS = $(R_SEXPTOOLS)" >> SLmake.inc
+		@echo "R_SEXPTOOLS = $(R_SEXPTOOLS)" > SLmake.inc
 		@echo "include $(MkInclude)" >> SLmake.inc
 		@echo "" >> SLmake.inc
 		@cat SLmake.inc.org >> SLmake.inc
