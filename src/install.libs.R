@@ -1,10 +1,9 @@
-### Modified from pbdSLAP/src/install.libs.R
-
 files <- c("SEXPtools.so", "SEXPtools.so.dSYM", "SEXPtools.dylib", "SEXPtools.dll", "SEXPtools.rds")
 
 files <- files[file.exists(files)]
 
-if(length(files) > 0){
+if(length(files) > 0)
+{
   libsarch <- if (nzchar(R_ARCH)) paste("libs", R_ARCH, sep='') else "libs"
   dest <- file.path(R_PACKAGE_DIR, libsarch)
   dir.create(dest, recursive = TRUE, showWarnings = FALSE)
@@ -14,7 +13,9 @@ if(length(files) > 0){
 ### For lib
 file <- "libsexptools.a"
 
-if(file.exists(file)){  ### External libraries do not build "libslap.a"
+# External libraries do not build "libsexptools.a"
+if(file.exists(file))
+{
   libarch <- if (nzchar(R_ARCH)) paste("lib", R_ARCH, sep='') else "lib"
   dest <- file.path(R_PACKAGE_DIR, libarch)
   dir.create(dest, recursive = TRUE, showWarnings = FALSE)
@@ -24,7 +25,8 @@ if(file.exists(file)){  ### External libraries do not build "libslap.a"
 ### For etc
 file <- "Makeconf"
 
-if(file.exists(file)){
+if(file.exists(file))
+{
   etcarch <- if (nzchar(R_ARCH)) paste("etc", R_ARCH, sep='') else "etc"
   dest <- file.path(R_PACKAGE_DIR, etcarch)
   dir.create(dest, recursive = TRUE, showWarnings = FALSE)

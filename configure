@@ -1730,6 +1730,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+
 # Checks for programs.
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -2527,6 +2528,10 @@ if test -z "${R_HOME}"; then
   exit 1
 fi
 
+R_SCMD="${R_HOME}/bin/Rscript -e"
+
+
+# Set EXT_LDFLAGS, otherwise default LDFLAGS, OBJS, and LIBS will be set.
 
 if ${EXT_LDFLAGS+:} false; then :
 
@@ -2534,28 +2539,26 @@ else
    EXT_LDFLAGS=""
 fi
 if test "X$EXT_LDFLAGS" = "X" ; then
-  EXT_LDFLAGS="\$(LAPACK_LIBS) \$(BLAS_LIBS)"
-  EXT_OBJS="\$(R_SEXPtools)"
+  EXT_OBJS="\$(R_SEXPTOOLS)"
   EXT_LIBS="userLibrary"
 else
   EXT_OBJS=""
   EXT_LIBS=""
 fi
 
+
+# Report
 echo " "
-echo "****************** Results of pbdSLAP package configure *****************"
+echo "****************** Results of SEXPtools package configure *****************"
 echo " "
-echo ">> EXT_LDFLAGS = ${EXT_LDFLAGS}"
 echo ">> EXT_OBJS = ${EXT_OBJS}"
 echo ">> EXT_LIBS = ${EXT_LIBS}"
-echo ">> CDEFS = ${CDEFS}"
-echo ">> CDEFS_CHECK = ${CDEFS_CHECK}"
-echo ">> SPMD_CPPFLAGS = ${SPMD_CPPFLAGS}"
-echo ">> SPMD_LDFLAGS = ${SPMD_LDFLAGS}"
 echo " "
 echo "*************************************************************************"
 echo " "
 
+
+# Substitute
 
 ac_config_files="$ac_config_files src/Makevars"
 

@@ -4,5 +4,5 @@ ARCH = $(AR)
 ARCHFLAGS = cr
 # ARCHFLAGS = -rucs
 
-SEXPTOOLSLIB = $(R_SEXPtools) 
+SEXPTOOLSLIB = $(R_SEXPTOOLS) 
 
