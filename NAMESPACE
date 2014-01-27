@@ -1,5 +1,5 @@
 useDynLib(SEXPtools)
 
 # All internal functions
-exportPattern("^[[:alpha:]]+")
+#exportPattern("^[[:alpha:]]+")
 
