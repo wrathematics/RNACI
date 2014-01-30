@@ -64,6 +64,12 @@
 SEXP Rvecalloc(int n, char *type);
 SEXP Rmatalloc(int m, int n, char *type);
 
+// floats.c
+int fis_zerof(float x);
+int fis_zero(double x);
+fequalsf(float x, float y);
+int fequals(double x, double y);
+
 // misc.c
 int is_Rnull(SEXP x);
 int is_Rnan(SEXP x);
