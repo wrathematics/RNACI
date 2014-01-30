@@ -1,2 +1,47 @@
 \section{Linking with \thispackage}\label{linking}
 
+\subsection{Configuring a Package to use SEXPtools}
+In your \code{configure.ac} and/or \code{src/Makevars} file(s), you can get the 
+package linking and include information via:
+\begin{lstlisting}
+R_SCMD="${R_HOME}/bin/Rscript -e"
+ 
+SEXPTOOLS_LDFLAGS=`${R_SCMD} "SEXPtools:::ldflags()"`
+SEXPTOOLS_CPPFLAGS=`${R_SCMD} "SEXPtools:::cppflags()"`
+\end{lstlisting}
+
+and adding \code{\$(SEXPTOOLS_LDFLAGS)} to \code{PKG_LIBS} and 
+\code{\$(SEXPTOOLS_CPPFLAGS)} to \code{PKG_CPPFLAGS}.  See the
+\href{http://cran.r-project.org/doc/manuals/R-exts.html#Configure-and-cleanup
+}{Writing R Extensions} manual for more information.  You can also see the 
+\pkg{pbdBASE} and \pkg{pbdDMAT} packages as examples.
+
+
+
+\subsection{Testing the Configuration}
+
+To ensure that the package configuration is correct, you can use this test 
+code.  Include this \proglang{C} file:
+\begin{lstlisting}[title=sexptools\_test.c]
+#include <SEXPtools.h>
+
+SEXP sexptools_test(SEXP mat)
+{
+	PRINT(mat);
+	
+	return RNULL;
+}
+\end{lstlisting}
+
+and this \proglang{R} file:
+\begin{lstlisting}[language=rr,title=sexptools\_test.r]
+sexptools_test <- function() .Call("sexptools_test", matrix(1:30, 10))
+\end{lstlisting}
+
+Then build your package with the usual \code{R CMD INSTALL} and test by loading 
+\proglang{R} and running:
+\begin{lstlisting}[language=rr]
+library(<my package>)
+
+sexptools_test()
+\end{lstlisting}
