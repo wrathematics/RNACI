@@ -14,7 +14,7 @@ PKG_LIBS = $(EXT_LDFLAGS) $(FLIBS)
 R_OBJS = \
 	SEXPtools/alloc.o \
 	SEXPtools/c11.o \
-    SEXPtools/floats.o \
+	SEXPtools/floats.o \
 	SEXPtools/misc.o \
 	SEXPtools/printing.o \
 	SEXPtools/structures_dataframes.o \
