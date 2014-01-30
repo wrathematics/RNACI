@@ -4,6 +4,7 @@ include ../SLmake.inc
 sexptools = \
 	alloc.o \
 	c11.o \
+	floats.o \
 	misc.o \
 	printing.o \
 	structures_dataframes.o \
