@@ -1,39 +1,44 @@
 %\VignetteIndexEntry{memuse-guide}
 
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
 
 \input{./include/preamble}
 
+
+
 \newcommand{\thispackage}{\pkg{SEXPtools}}
 
-
-\author{Drew Schmidt}
-\title{Guide to the \pkg{SEXPtools} Package\\[.4cm]}
+\mytitle{Guide to the\\ \pkg{SEXPtools} Package}
+\mysubtitle{A simplification to \R's native \C\ interface}
+\myauthor{Drew Schmidt\\	
+	\texttt{wrathematics@gmail.com}
+}
+\myversion{0.1}
 
 
 \begin{document}
 
 \prebodyheadfoot
-
 \restoregeometry
   
-\maketitle
+  
+\titleGP
+\newpage
+
+\input{./include/00-acknowledgement}
+\vfill
+\input{./include/00-copyright}
+\newpage
 \pagenumbering{roman}
 \tableofcontents
 
 
-\input{./include/00-copyright}
-\newpage
-\input{./include/00-acknowledgement}
-
-\newpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
 
 \bodyheadfoot
-\newpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \pagestyle{fancy}
