@@ -1,0 +1,13 @@
+Package: SEXPtools
+Title: SEXPtools
+Version: 0.1-0
+Date: 2014-1-7
+Depends: R (>= 2.14.0)
+Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"), 
+        email = "schmidt@math.utk.edu"))
+Description: Tools for simplifying R's native C interface.  Like a dumber,
+        less comprehensive, C version of Rcpp.
+License: BSD 2-clause License + file LICENSE
+NeedsCompilation: Yes
+Author: Drew Schmidt [aut, cre]
+Maintainer: Drew Schmidt <schmidt@math.utk.edu>

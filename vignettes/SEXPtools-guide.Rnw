@@ -1,0 +1,26 @@
+%\VignetteIndexEntry{memuse-guide}
+
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\newcommand{\thispackage}{\pkg{SEXPtools}}
+
+\input{./include/preamble}
+
+
+\mytitle{Guide to the\\ \pkg{SEXPtools} Package}
+\mysubtitle{A simplification to \R's native \C\ interface}
+\myauthor{Drew Schmidt\\ \texttt{wrathematics@gmail.com} }
+\myversion{0.1}
+
+
+\begin{document}
+
+\makefirstfew
+
+\input{./include/01-intro}
+\input{./include/02-linking}
+\input{./include/03-specification}
+\input{./include/04-use}
+\input{./include/05-questions}
+
+\end{document}

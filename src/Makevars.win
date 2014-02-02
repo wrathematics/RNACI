@@ -1,0 +1,56 @@
+##########################################################
+
+EXT_LDFLAGS = @EXT_LDFLAGS@
+EXT_LIBS = @EXT_LIBS@
+EXT_OBJS = @EXT_OBJS@
+
+### R Default Makeconf
+MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
+
+
+PKG_CFLAGS = -w
+PKG_LIBS = $(EXT_LDFLAGS) $(FLIBS)
+
+R_OBJS = \
+	SEXPtools/alloc.o \
+	SEXPtools/c11.o \
+	SEXPtools/floats.o \
+	SEXPtools/misc.o \
+	SEXPtools/printing.o \
+	SEXPtools/structures_dataframes.o \
+	SEXPtools/structures_lists.o \
+	SEXPtools/structures_misc.o \
+	tests/tests.o \
+	package_examples.o
+R_SEXPTOOLS = libsexptools.a
+OBJECTS = ${R_OBJS}
+BUILD_LIBS = $(SHLIB) $(EXT_LIBS)
+
+USER_CONF = Makeconf
+
+
+all: $(BUILD_LIBS)
+		@echo "R_SEXPTOOLS = lib${R_ARCH}/$(R_SEXPTOOLS)" > $(USER_CONF)
+
+$(SHLIB): $(OBJECTS)
+
+userLibrary: $(R_SEXPTOOLS)
+
+SLmake:
+		@rm -rf SLmake.inc
+		@echo "R_SEXPTOOLS = $(R_SEXPTOOLS)" > SLmake.inc
+		@echo "include $(MkInclude)" >> SLmake.inc
+		@echo "" >> SLmake.inc
+		@cat SLmake.inc.org >> SLmake.inc
+
+
+
+$(R_SEXPTOOLS): SLmake
+		( cd SEXPtools; $(MAKE) )
+
+
+
+clean:
+		@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+				Makedeps Makevars $(SHLIB) $(OBJECTS)
+

@@ -1,0 +1,5 @@
+useDynLib(SEXPtools)
+
+# All internal functions
+#exportPattern("^[[:alpha:]]+")
+
