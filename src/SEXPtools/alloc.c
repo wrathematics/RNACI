@@ -8,15 +8,23 @@
 #include "SEXPtools.h"
 
 
+<<<<<<< HEAD
 SEXP __Rvecalloc(int n, char *type, int init)
 {
   SEXP RET;
   PROTECT(RET);
   int i;
+=======
+SEXP Rvecalloc(int n, char *type)
+{
+  SEXP RET;
+  PROTECT(RET);
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
   
   if (strcmp(type, "vec") == 0)
     RET = allocVector(VECSXP, n);
   else if (strcmp(type, "int") == 0)
+<<<<<<< HEAD
   {
     RET = allocVector(INTSXP, n);
     
@@ -46,6 +54,11 @@ SEXP __Rvecalloc(int n, char *type, int init)
       }
     }
   }
+=======
+    RET = allocVector(INTSXP, n);
+  else if (strcmp(type, "double") == 0 || strcmp(type, "dbl") == 0)
+    RET = allocVector(REALSXP, n);
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
     RET = allocVector(STRSXP, n);
   
@@ -53,6 +66,7 @@ SEXP __Rvecalloc(int n, char *type, int init)
   return RET;
 }
 
+<<<<<<< HEAD
 
 
 SEXP __Rmatalloc(int m, int n, char *type, int init)
@@ -60,10 +74,17 @@ SEXP __Rmatalloc(int m, int n, char *type, int init)
   SEXP RET;
   PROTECT(RET);
   int i, j;
+=======
+SEXP Rmatalloc(int m, int n, char *type)
+{
+  SEXP RET;
+  PROTECT(RET);
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
   
   if (strcmp(type, "vec") == 0)
     RET = allocMatrix(VECSXP, m, n);
   else if (strcmp(type, "int") == 0)
+<<<<<<< HEAD
   {
     RET = allocMatrix(INTSXP, m, n);
     
@@ -95,6 +116,11 @@ SEXP __Rmatalloc(int m, int n, char *type, int init)
       }
     }
   }
+=======
+    RET = allocMatrix(INTSXP, m, n);
+  else if (strcmp(type, "double") == 0 || strcmp(type, "dbl") == 0)
+    RET = allocMatrix(REALSXP, m, n);
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
     RET = allocMatrix(STRSXP, m, n);
   

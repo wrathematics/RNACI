@@ -20,7 +20,10 @@
 
 #define RNULL R_NilValue
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
 // R data accessors
 #define INT(x,i) (INTEGER(x)[i])
 #define DBL(x,i) (REAL(x)[i])
@@ -32,12 +35,16 @@
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
 // GC stuff
 #define R_INIT int __SEXPtools_SEXP_protect_counter=0
 #define PT(x) PROTECT((x)); (__SEXPtools_SEXP_protect_counter)++
 #define R_END (UNPROTECT(__SEXPtools_SEXP_protect_counter))
 
+<<<<<<< HEAD
 
 // Allocations
 #define OPTIONALARG1(a,b,...) (a),(b)
@@ -47,6 +54,12 @@
 //#define newRmat(x,m,n,type) PT(x=__Rmatalloc(m,n,type))
 #define newRmat(x,m,n,...) PT(x=__Rmatalloc(m,n,OPTIONALARG1(__VA_ARGS__,false)))
 
+=======
+// Allocations
+#define newRlist(x,n) PT(x=Rvecalloc(n, "vec"))
+#define newRvec(x,n,type) PT(x=Rvecalloc(n, type))
+#define newRmat(x,m,n,type) PT(x=Rmatalloc(m,n,type))
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
 
 /* Misc stuff */
 
@@ -68,8 +81,13 @@
 
 
 // alloc.c
+<<<<<<< HEAD
 SEXP __Rvecalloc(int n, char *type, int init);
 SEXP __Rmatalloc(int m, int n, char *type, int init);
+=======
+SEXP Rvecalloc(int n, char *type);
+SEXP Rmatalloc(int m, int n, char *type);
+>>>>>>> 4d605fafc56a644c2c01396b2b6edb693f232e07
 
 // floats.c
 int fis_zerof(float x);
