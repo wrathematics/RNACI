@@ -15,6 +15,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "ompversion.h"
+
 
 /* R stuff */
 

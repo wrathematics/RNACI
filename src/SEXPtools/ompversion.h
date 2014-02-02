@@ -4,6 +4,10 @@
 
 // Copyright 2014, Schmidt
 
+#ifndef __SEXPTOOLS_OMPVERSION_H__
+#define __SEXPTOOLS_OMPVERSION_H__
+
+
 #ifdef _OPENMP
 #include <omp.h>
 #if _OPENMP >= 201307
@@ -12,3 +16,4 @@
 #endif
 
 
+#endif
