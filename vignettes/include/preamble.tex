@@ -1,5 +1,32 @@
 \input{./include/titlepage.tex}
 
+\newcommand{\makefirstfew}{%
+\prebodyheadfoot
+\restoregeometry
+  
+  
+\titleGP
+\newpage
+
+\input{./include/00-acknowledgement}
+\vfill
+\input{./include/00-copyright}
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\bodyheadfoot
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{fancy}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

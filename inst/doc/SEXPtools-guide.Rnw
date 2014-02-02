@@ -2,46 +2,20 @@
 
 \documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
+\newcommand{\thispackage}{\pkg{SEXPtools}}
 
 \input{./include/preamble}
 
 
-
-\newcommand{\thispackage}{\pkg{SEXPtools}}
-
 \mytitle{Guide to the\\ \pkg{SEXPtools} Package}
 \mysubtitle{A simplification to \R's native \C\ interface}
-\myauthor{Drew Schmidt\\	
-	\texttt{wrathematics@gmail.com}
-}
+\myauthor{Drew Schmidt\\ \texttt{wrathematics@gmail.com} }
 \myversion{0.1}
 
 
 \begin{document}
 
-\prebodyheadfoot
-\restoregeometry
-  
-  
-\titleGP
-\newpage
-
-\input{./include/00-acknowledgement}
-\vfill
-\input{./include/00-copyright}
-\newpage
-\pagenumbering{roman}
-\tableofcontents
-
-
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
-
-\bodyheadfoot
-\pagenumbering{arabic}
-\setcounter{page}{1}
-\pagestyle{fancy}
+\makefirstfew
 
 \input{./include/01-intro}
 \input{./include/02-linking}
