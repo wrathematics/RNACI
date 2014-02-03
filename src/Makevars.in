@@ -7,9 +7,8 @@ EXT_OBJS = @EXT_OBJS@
 ### R Default Makeconf
 MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
 
-
 PKG_CFLAGS = -w
-PKG_LIBS = $(EXT_LDFLAGS) $(FLIBS)
+PKG_LIBS = $(EXT_LDFLAGS)
 
 R_OBJS = \
 	SEXPtools/alloc.o \
@@ -43,10 +42,8 @@ SLmake:
 		@cat SLmake.inc.org >> SLmake.inc
 
 
-
 $(R_SEXPTOOLS): SLmake
 		( cd SEXPtools; $(MAKE) )
-
 
 
 clean:

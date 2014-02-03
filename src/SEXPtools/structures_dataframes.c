@@ -54,7 +54,7 @@ SEXP make_dataframe_default_rownames(int n)
 SEXP make_dataframe_nonames(int n, ...)
 {
   R_INIT;
-  int i, nrows;
+  int i;
   SEXP R_df;
   SEXP R_rownames;
   SEXP R_colnames;

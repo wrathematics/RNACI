@@ -15,7 +15,7 @@
 #include <stdarg.h>
 #include <string.h>
 
-#include "ompversion.h"
+//#include "ompversion.h"
 
 
 /* R stuff */
@@ -101,6 +101,7 @@ SEXP make_list_nonames(int n, ...);
 void set_list_names(SEXP R_list, SEXP R_names);
 void set_df_rownames(SEXP R_df, SEXP R_rownames);
 void set_df_colnames(SEXP R_df, SEXP R_colnames);
+void set_list_as_df(SEXP R_list);
 
 
 #endif
