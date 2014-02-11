@@ -23,7 +23,7 @@ SEXP example_df()
   DBL(b,1) = 1.23456;
   
   R_df_names = make_list_names(2, "abc", "defg");
-  R_df = make_dataframe_nonames(2, a, b);
+  R_df = make_dataframe(RNULL, RNULL, 2, a, b);
   
   R_END;
   return R_df;

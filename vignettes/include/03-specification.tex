@@ -1,7 +1,85 @@
 \section{Specification}\label{specification}
 
-\begin{lstlisting}[language=fanC]
-newRlist(x, n);
-newRvec(x, n, type);
-newRmat(x, m, n, type);
+\begin{lstlisting}[language=fanC,title=GC Counter]
+R_INIT;
+
+R_END;
 \end{lstlisting}
+
+
+\begin{lstlisting}[language=fanC,title=Allocation]
+SEXP x;
+int m, n;
+
+// Construct R vector (list)
+newRlist(x, n);                                 // SEXPtools
+PROTECT(x = allocVector(VECSXP, n));            // Native equiv.
+
+// Construct numeric R vector with C-type 'type'
+newRvec(x, n, type);                            // SEXPtools
+PROTECT(x = allocVector(<SEXPTYPE>, n));        // Native equiv.
+
+// Construct numeric R matrix
+newRmat(x, m, n, type);                         // SEXPtools
+PROTECT(x = allocMatrix(<SEXPTYPE>, m, n));     // Native equiv.
+\end{lstlisting}
+
+
+\begin{center}
+\begin{minipage}{.485\textwidth}\centering
+\begin{lstlisting}[language=fanC,title=Data Accessors]
+SEXP x;
+int i, j;
+
+// SEXPtools
+INTP(x)
+INT(x, i)
+DBLP(x)
+DBL(x, i) 
+STR(x, i)
+
+MatINT(x, i, j)
+MatDBL(x, i, j) 
+\end{lstlisting}
+\end{minipage}
+\hspace{.2cm}
+\begin{minipage}{.485\textwidth}\centering
+\begin{lstlisting}[language=fanC,title=Data Accessors]
+SEXP x;
+int i, j;
+
+// Native equivalents
+INTEGER(x)
+INTEGER(x)[i]
+REAL(x)
+REAL(x, i)
+(char*)CHAR(STRING_ELT(x,i))
+
+INTEGER(x)[i+nrows(x)*j]
+DOUBLE(x)[i+nrows(x)*j]
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+
+\begin{lstlisting}[language=fanC,title=Testers]
+SEXP x;
+
+is_Rnull(SEXP x);
+int is_Rnan(SEXP x);
+int is_Rna(SEXP x);
+int is_double(SEXP x);
+int is_integer(SEXP x);
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=fanC,title=Misc]
+RNULL
+R_NilValue
+
+// Print any SEXP with R's printing
+SEXP x;
+PRINT(x)
+\end{lstlisting}
+
+

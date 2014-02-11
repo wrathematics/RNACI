@@ -135,9 +135,15 @@
 	tabsize=4,
 	captionpos=t,
 	morecomment=[l]{//},
-	morekeywords={newRvec,newRlist, newRmat, R_INIT, PT, R_END, INTP, DBLP, 
-INT, DBL, STR, MatINT, matDBL, RNULL, is_null, is_Rnull, is_Rnan, is_Rna, 
-is_double, is_integer, PRINT}
+	morekeywords={%
+    % SEXPtools
+    newRvec,newRlist, newRmat, R_INIT, PT, R_END, INTP, DBLP,%
+    INT, DBL, STR, MatINT, MatDBL, RNULL, is_null, is_Rnull, is_Rnan, is_Rna,%
+    is_double, is_integer, PRINT,%
+    % Native
+    PROTECT, allocVector, allocMatrix, VECSXP, R_NilValue, SEXP,
+    INTEGER, DOUBLE, 
+  }
 }
 
 

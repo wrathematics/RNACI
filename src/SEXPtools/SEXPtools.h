@@ -15,7 +15,12 @@
 #include <stdarg.h>
 #include <string.h>
 
-//#include "ompversion.h"
+#ifdef _OPENMP
+#include <omp.h>
+#if _OPENMP >= 201307
+#define _OPENMP_SUPPORT_SIMD
+#endif
+#endif
 
 
 /* R stuff */
@@ -90,12 +95,11 @@ int is_integer(SEXP x);
 void PRINT(SEXP x);
 
 // structures_dataframes.c
-SEXP make_dataframe_nonames(int n, ...);
+SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...);
 
 // structures_lists.c
 SEXP make_list_names(int n, ...);
-SEXP make_list(SEXP R_list_names, ...);
-SEXP make_list_nonames(int n, ...);
+SEXP make_list(SEXP R_list_names, const int n, ...);
 
 // structures_misc.c
 void set_list_names(SEXP R_list, SEXP R_names);

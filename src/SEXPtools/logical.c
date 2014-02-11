@@ -16,9 +16,4 @@ PROTECT(Rfalse = allocVector(LGLSXP, 1));
 //LOGICAL(Rtrue)[0] = 0;
 UNPROTECT(2);
 
-
-static SEXP assignValueToFooInR_GlobalEnv(SEXP Value)
-{
-    defineVar(install("Foo"),Value,R_GlobalEnv);
-    return Value;
-}
+SEXP 

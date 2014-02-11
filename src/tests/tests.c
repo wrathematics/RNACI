@@ -24,11 +24,11 @@ SEXP test_list(SEXP names)
   DBL(b,0) = -10.10214;
   
   if (hasnames == 0)
-    R_list = make_list_nonames(2, a, b);
+    R_list = make_list(RNULL, 2, a, b);
   else
   {
     R_list_names = make_list_names(2, "abc", "defg");
-    R_list = make_list(R_list_names, a, b);
+    R_list = make_list(R_list_names, 2, a, b);
   }
   
   
@@ -73,8 +73,9 @@ SEXP test_df()
   DBL(b,0) = -10.10214;
   DBL(b,1) = 1.23456;
   
+  // df without names
   R_df_names = make_list_names(2, "abc", "defg");
-  R_df = make_dataframe_nonames(2, a, b);
+  R_df = make_dataframe(RNULL, RNULL, 2, a, b);
   
   R_END;
   return R_df;

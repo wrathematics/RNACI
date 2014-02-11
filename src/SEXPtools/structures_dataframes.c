@@ -51,13 +51,13 @@ SEXP make_dataframe_default_rownames(int n)
 
 
 // Actually useful things
-SEXP make_dataframe_nonames(int n, ...)
+SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
 {
   R_INIT;
   int i;
   SEXP R_df;
-  SEXP R_rownames;
-  SEXP R_colnames;
+  SEXP R_default_rownames;
+  SEXP R_default_colnames;
   SEXP tmp;
   va_list listPointer;
   
@@ -76,12 +76,23 @@ SEXP make_dataframe_nonames(int n, ...)
   va_end(listPointer);
   
   // Set names
-  R_rownames = make_dataframe_default_rownames(n);
-  R_colnames = make_dataframe_default_colnames(n);
-  
   set_list_as_df(R_df);
-  set_df_rownames(R_df, R_rownames);
-  set_df_colnames(R_df, R_colnames);
+  
+  if (is_Rnull(R_rownames))
+  {
+    R_default_rownames = make_dataframe_default_rownames(n);
+    set_df_rownames(R_df, R_default_rownames);
+  }
+  else
+    set_df_rownames(R_df, R_rownames);
+  
+  if (is_Rnull(R_colnames))
+  {
+    R_default_colnames = make_dataframe_default_colnames(n);
+    set_df_colnames(R_df, R_default_colnames);
+  }
+  else
+    set_df_colnames(R_df, R_colnames);
   
   
   R_END;
