@@ -3,20 +3,22 @@ citHeader("To cite SEXPtools:")
 citEntry(
   entry = "Misc",
   title = "SEXPtools",
-  author = personList(as.person("Drew Schmidt")),
-  year = "2013",
+  author = personList(as.person("Drew Schmidt"),
+                      as.person("Wei-Chen Chen")),
+  year = "2014",
   note = "{R} Package",
-  textVersion = "Schmidt, D. (2013) SEXPtools",
+  textVersion = "Schmidt, D. and Chen, W.-C. (2014) SEXPtools.  R Package.",
   key = "SEXPtoolsRPackage"
 )
 
 citEntry(
   entry = "Manual",
   title = "Guide to the SEXPtools Package",
-  author = personList(as.person("Drew Schmidt")),
+  author = personList(as.person("Drew Schmidt"),
+                      as.person("Wei-Chen Chen")),
   year = "2014",
   note = "{R} Vignette",
-  textVersion = "Schmidt, D. (2013) Guide to the memuse Package. R Vignette, URL https://github.com/wrathematics/memuse",
+  textVersion = "Schmidt, D. and Chen, W.-C. (2014) Guide to the memuse Package. R Vignette, URL https://github.com/wrathematics/memuse",
   key = "SEXPtoolsRPackageVignette"
 )
 
