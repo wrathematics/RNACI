@@ -7,9 +7,11 @@ cppflags <- function()
     cat(flags)
 }
 
-ldflags <- function()
+ldflags <- function(arch = '')
 {
-    ld.path <- tools::file_path_as_absolute(system.file("lib", package="SEXPtools"))
+    file.path <- paste("lib/", arch, sep = "")
+
+    ld.path <- tools::file_path_as_absolute(system.file(file.path, package="SEXPtools"))
 
     flags <- paste(ld.path, "/libsexptools.a", sep="")
 

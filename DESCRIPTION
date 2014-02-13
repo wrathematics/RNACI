@@ -11,3 +11,4 @@ License: BSD 2-clause License + file LICENSE
 NeedsCompilation: Yes
 Author: Drew Schmidt [aut, cre]
 Maintainer: Drew Schmidt <schmidt@math.utk.edu>
+Packaged: 2014-02-13 19:07:53 UTC; snoweye
