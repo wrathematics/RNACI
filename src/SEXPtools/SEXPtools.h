@@ -15,13 +15,6 @@
 #include <stdarg.h>
 #include <string.h>
 
-#ifdef _OPENMP
-#include <omp.h>
-#if _OPENMP >= 201307
-#define _OPENMP_SUPPORT_SIMD
-#endif
-#endif
-
 
 /* R stuff */
 
