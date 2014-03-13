@@ -14,6 +14,7 @@
 
 #include <stdarg.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 /* R stuff */
@@ -51,9 +52,6 @@
 /* Misc stuff */
 
 #define nonzero(x) (x?x:1)
-
-#define true 1
-#define false 0
 
 #define is_null(x) (x==NULL)
 
