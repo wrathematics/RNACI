@@ -1,8 +1,11 @@
-cppflags <- function()
+cppflags <- function(cmake=FALSE)
 {
     inc.path <- tools::file_path_as_absolute(system.file("include", package="SEXPtools"))
     
-    flags <- paste("-I", inc.path, sep="")
+    if (!cmake)
+        flags <- paste("-I", inc.path, sep="")
+    else
+        flags <- inc.path
 
     cat(flags)
 }

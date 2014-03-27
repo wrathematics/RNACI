@@ -56,8 +56,8 @@
 #define is_null(x) (x==NULL)
 
 #if __STDC_VERSION__ >= 199901L
-#define dbstart printf("%s Started\n", __func__);int __SEXPtools_debug_printing_counter=0
-#define dbstop printf("%s Ended\n", __func__)
+#define dbstart printf("DEBUGGING in %s Started\n", __func__);int __SEXPtools_debug_printing_counter=0
+#define dbstop printf("DEBUGGING in %s Ended\n", __func__)
 #else
 #define dbstart int __SEXPtools_debug_printing_counter=0
 #endif
