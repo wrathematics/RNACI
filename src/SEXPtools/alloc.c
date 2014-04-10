@@ -25,10 +25,8 @@ SEXP __Rvecalloc(int n, char *type, int init)
       #if defined( _OPENMP_SUPPORT_SIMD)
       #pragma omp for simd
       #endif
-      {
-        for (i=0; i<n; i++)
-          INT(RET, i) = 0;
-      }
+      for (i=0; i<n; i++)
+        INT(RET, i) = 0;
     }
   }
   else if (strcmp(type, "double") == 0 || strcmp(type, "dbl") == 0)
@@ -40,10 +38,8 @@ SEXP __Rvecalloc(int n, char *type, int init)
       #if defined( _OPENMP_SUPPORT_SIMD)
       #pragma omp for simd
       #endif
-      {
-        for (i=0; i<n; i++)
-          DBL(RET, i) = 0.0;
-      }
+      for (i=0; i<n; i++)
+        DBL(RET, i) = 0.0;
     }
   }
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
