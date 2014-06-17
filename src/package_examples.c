@@ -16,7 +16,7 @@ SEXP example_df()
   newRvec(a, 2, "int");
   newRvec(b, 2, "double");
   
-  INT(a,0) = 1;
+  INT(a) = 1;
   INT(a,1) = 2;
   
   DBL(b,0) = -10.10214;

@@ -17,15 +17,25 @@
 #include <stdbool.h>
 
 
-/* R stuff */
-
 #define RNULL R_NilValue
 
+// Voodoo Args
+#define OPTIONALARG1(a,b,...) (a),(b)
 
 // R data accessors
-#define INT(x,i) (INTEGER(x)[i])
-#define DBL(x,i) (REAL(x)[i])
-#define STR(x,i) ((char*)CHAR(STRING_ELT(x,i)))
+#define __SEXPtools_INT(x,y,...) INTEGER(x)[y]
+#define INT(x,...) __SEXPtools_INT(x,##__VA_ARGS__,0)
+
+#define __SEXPtools_DBL(x,y,...) REAL(x)[y]
+#define DBL(x,...) __SEXPtools_DBL(x,##__VA_ARGS__,0)
+
+#define __SEXPtools_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
+#define STR(x,...) __SEXPtools_STR(x,##__VA_ARGS__,0)
+
+//#define INT(x,i) (INTEGER(x)[i])
+//#define DBL(x,i) (REAL(x)[i])
+//#define STR(x,i) ((char*)CHAR(STRING_ELT(x,i)))
+
 
 #define MatINT(x,i,j) (INTEGER(x)[i+nrows(x)*j])
 #define MatDBL(x,i,j) (REAL(x)[i+nrows(x)*j])
@@ -41,7 +51,6 @@
 
 
 // Allocations
-#define OPTIONALARG1(a,b,...) (a),(b)
 #define newRlist(x,n) PT(x=__Rvecalloc(n, "vec", false))
 //#define newRvec(x,n,type) PT(x=__Rvecalloc(n, type))
 #define newRvec(x,n,...) PT(x=__Rvecalloc(n,OPTIONALARG1(__VA_ARGS__,false)))
@@ -50,7 +59,6 @@
 
 
 /* Misc stuff */
-
 #define nonzero(x) (x?x:1)
 
 #define is_null(x) (x==NULL)

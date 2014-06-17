@@ -11,3 +11,8 @@
 src/Makeconf
 src/Makevars
 
+*.aux
+*.out
+*.toc
+*.tex.backup
+

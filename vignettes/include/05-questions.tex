@@ -1,20 +1,17 @@
 \section{Q\&A}
 
-This section is a set of frequently asked questions (FAQ), with frequency uniformly
-equal to zero.
-
-
 \subsection{Why make this?}
-Probably my biggest motivator was fun; I felt like making somethinglike this.  
-Another, more pragmatic reason is that part of my workload (for very 
-non-standard reasons not worth getting into) prevents me from using \pkg{Rcpp}.  
-This leaves me stuck with the native \C\ interface for \R.  And I don't like 
-\R's native \C\ interface.  This is my attempt to make that interface (slightly) 
-more friendly and convenient to work with.
+Probably my biggest motivator was fun; I wanted to.  
+Another, more pragmatic reason is that part of my workload prevents me from 
+using \pkg{Rcpp}.  I deal a lot with \C and \Fortran; trying to integrate \Cpp 
+into that mess is not fun, and so for me, \pkg{Rcpp} is more of a burden than a 
+savior.  This leaves me stuck with the native \C interface for \R.  And I don't 
+like \R's native \C interface.  This package is my attempt to make that 
+interface (slightly) more friendly and convenient to work with.
 
 
 \subsection{Why the strange name?}
-Every \R\ object (underneath, in the \C\ interface) is an \code{SEXP} (short for
+Every \R object (underneath, in the \C interface) is an \code{SEXP} (short for
 S-expression) object, which is a struct pointer.  This is explained in the
 \href{http://cran.r-project.org/doc/manuals/R-ints.html#SEXPs}{R Internals} 
 manual.  This package is a collection of tools for more easily managing SEXP 
@@ -27,37 +24,39 @@ details.
 
 
 \subsection{How does this differ from \pkg{Rcpp}?}\label{sec:rcppdiffs}
-Each of these packages makes an attempt at solving a serious problem with utilizing compiled
-code from \R: the native interface for \proglang{C} code in \R\ sucks.  There are huge 
-differences between the two packages, however. In short, \pkg{Rcpp} is \emph{much} a much 
-more comprehensive solution.  If you are new to using compiled code with \R, frankly this 
-package probably is not for you; you would likely be much better served by \pkg{Rcpp}.  
-However, if for some combination of reasons you either cannot or prefer to not use 
-\pkg{Rcpp}, then this package may be of interest to you.
+Each of these packages makes an attempt at solving a serious problem with 
+utilizing compiled code from \R: the native interface for \proglang{C} code in 
+\R sucks.  There are huge differences between the two packages, however. In 
+short, \pkg{Rcpp} is \emph{much} a much more comprehensive solution.  If you are 
+new to using compiled code with \R, frankly this package probably is not for 
+you; you would likely be much better served by \pkg{Rcpp}.  
 
-Beyond the scope and ease of use of each project (where \pkg{Rcpp} handily wins), there are
-some other critical differences between the projects.  A few of note are:
+\thispackage is primarily meant for those who are working in pure \C, writing 
+\C/\Fortran code and wrapping it back into \R.  This makes the wrapping a bit 
+simpler.  It does not make the translation of \R code into compiled code any 
+simpler, which is one of \pkg{Rcpp}'s main goals.
 
-\begin{enumerate}
-  \item \thispackage\ is more permissively licensed than \pkg{Rcpp} (BSD rather than GPL)
-  \item \thispackage\ is pure \C\, while \pkg{Rcpp} is \Cpp.
-\end{enumerate}
+Another important difference is that \thispackage is more permissively 
+licensed than \pkg{Rcpp} (BSD rather than GPL).  If this issue is important to 
+you but you live in the \Cpp world, you may be interested in Romain Francois' 
+new \pkg{Rcpp11} package.
 
-These things may not matter in the least to you.  If that's the case, then you
-may well be better served by \pkg{Rcpp}.
 
 
 \subsection{Why would I want to use this package?}
-If you deal a lot with bringing compiled code to \R and currently (for 
-whatever reason) do not use \pkg{Rcpp}, there may be a few things here you will 
-find useful.
+If spend a lot of time bringing code to \R (especially if you deal with lists 
+and dataframes), this package offers a lot of convenient shorthand for doing so.
+
 
 
 \subsection{Is this really easier than R's native interface?}
-It is for me; notably, returning lists and dataframes is \emph{much} less 
-painful.  Most of the rest of the package is minor cosmetic things; but the 
-package is very permissively licensed, so feel free to pick and choose what you 
-want, however you want.
+It is for me, no question; notably, returning lists and dataframes is 
+\emph{much} less painful through some
+\href{https://en.wikipedia.org/wiki/Stdarg.h}{\code{stdarg}}
+sorcery.  Most of 
+the rest of the package is minor cosmetic things; but the package is very 
+permissively licensed, so feel free to pick and choose what you want, however 
+you want.
 
 
 \subsection{How would I use \thispackage\ in a package?}
@@ -67,14 +66,15 @@ with the utilities provided by \thispackage.  For the former, see
 \secref{linking}, and for the latter, see \secref{specification} and 
 \secref{example}.  For actual package examples using \thispackage, see 
 \href{http://cran.r-project.org/web/packages/pbdBASE/index.html}{\pkg{pbdBASE}} 
-and 
-\href{http://cran.r-project.org/web/packages/pbdDMAT/index.html}{\pkg{pbdDMAT}}.
+version~$\geq$~0.3-0,  
+\href{http://cran.r-project.org/web/packages/pbdDMAT/index.html}{\pkg{pbdDMAT}}
+version~$\geq$~0.3-0, and
+\href{http://cran.r-project.org/web/packages/memuse/index.html}{\pkg{memuse}}
+version~$\geq$~2.0.
 
 Philosophically, you should never have the bulk of the work of a function (of any
-importance) be handled by the \R\ interface (including \thispackage's version of it).
-If you do, then your code can never (easily) have a life outside of \R.  That may sound fine to you
-now, but if you ever decide to perform some of your work outside of \R, then you can't take
-your compiled code with you.  This is just bad practice and shortsightedness.  
-
-
-
+importance) be handled by the \R interface (including \thispackage's version of 
+it). If you do, then your code can never (easily) have a life outside of \R.  
+That may sound fine to you now, but if you ever decide to take some of your 
+work outside of \R, then you can't easily take your compiled code with you.  
+This is just bad practice and shortsightedness.  

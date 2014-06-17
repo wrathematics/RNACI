@@ -2,7 +2,7 @@
 
 \documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
-\newcommand{\thispackage}{\pkg{SEXPtools}}
+\newcommand{\thispackage}{\pkg{SEXPtools}\xspace}
 
 \input{./include/preamble}
 
