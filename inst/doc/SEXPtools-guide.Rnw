@@ -2,7 +2,7 @@
 
 \documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
-\newcommand{\thispackage}{\pkg{SEXPtools}}
+\newcommand{\thispackage}{\pkg{SEXPtools}\xspace}
 
 \input{./include/preamble}
 
@@ -19,8 +19,8 @@
 
 \input{./include/01-intro}
 \input{./include/02-linking}
-\input{./include/03-specification}
 \input{./include/04-use}
+\input{./include/03-specification}
 \input{./include/05-questions}
 
 \end{document}

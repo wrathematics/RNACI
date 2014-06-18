@@ -1,5 +1,16 @@
 \section{Specification}\label{specification}
 
+If you are familiar with \R's native \C interface already, then you may simply 
+wish to view \code{src/SEXPtools/SEXPtools.h} of the \thispackage source tree.
+
+
+
+\subsection{GC and Allocation}
+
+Instead of explicitly calling \code{UNPROTECT} on the number of 
+\code{PROTECT}'d objects, start every \code{SEXP} function with \code{R_INIT} 
+and end every \code{SEXP} function with \code{R_END}:
+
 \begin{lstlisting}[language=fanC,title=GC Counter]
 R_INIT; // Initialize the GC counter
 
@@ -7,11 +18,13 @@ R_END; // Call UNPROTECT on the appropriate number
 \end{lstlisting}
 
 
+Additionally, you don't need to call \code{PROTECT} anymore on new allocations; 
+simply call \code{newR*} for the type of \R object you want to construct:
 \begin{lstlisting}[language=fanC,title=Allocation]
 SEXP x;
 int m, n;
 
-// Construct R vector (list)
+// Construct R list object
 newRlist(x, n);                                 // SEXPtools
 PROTECT(x = allocVector(VECSXP, n));            // Native equiv.
 
@@ -25,47 +38,84 @@ PROTECT(x = allocMatrix(<SEXPTYPE>, m, n));     // Native equiv.
 \end{lstlisting}
 
 
+\begin{lstlisting}[language=fanC,title=Allocation Examples]
+// A length 10 integer vector
+newRvec(x, 10, "int");                          // SEXPtools
+PROTECT(x = allocVector(INTSXP, 10));           // Native equiv.
+
+// A 5 by 2 integer matrix
+newRmat(x, 5, 2, "int");                       // SEXPtools
+PROTECT(x = allocMatrix(INTSXP, 5, 2));        // Native equiv.
+\end{lstlisting}
+
+If you need to protect something you aren't allocating, use \code{PT()} instead 
+of \code{PROTECT()}; this will automatically increment the counter which keeps 
+track of the number of \code{PROTECT}'d objects.
+
+
+
+\subsection{Accessing SEXP Data}
+
 \begin{center}
 \begin{minipage}{.485\textwidth}\centering
-\begin{lstlisting}[language=fanC,title=Data Accessors]
+\begin{lstlisting}[language=fanC,title=SEXPtools Data Accessors]
 SEXP x;
 int i, j;
 
-// SEXPtools
+// Pointer to data
 INTP(x)
-INT(x, i)
 DBLP(x)
+
+// Vector data
+INT(x)
+INT(x, i)
+DBL(x)
 DBL(x, i) 
+STR(x)
 STR(x, i)
 
+// Matrix data
 MatINT(x, i, j)
 MatDBL(x, i, j) 
 \end{lstlisting}
 \end{minipage}
 \hspace{.2cm}
 \begin{minipage}{.485\textwidth}\centering
-\begin{lstlisting}[language=fanC,title=Data Accessors]
+\begin{lstlisting}[language=fanC,title=Native Data Accessors]
 SEXP x;
 int i, j;
 
-// Native equivalents
+// Pointer to data
 INTEGER(x)
-INTEGER(x)[i]
 REAL(x)
-REAL(x, i)
+
+// Vector Data
+INTEGER(x)[0]
+INTEGER(x)[i]
+REAL(x)[0]
+REAL(x)[i]
+(char*)CHAR(STRING_ELT(x,0))
 (char*)CHAR(STRING_ELT(x,i))
 
+// Matrix data
 INTEGER(x)[i+nrows(x)*j]
-DOUBLE(x)[i+nrows(x)*j]
+REAL(x)[i+nrows(x)*j]
 \end{lstlisting}
 \end{minipage}
 \end{center}
 
 
-\begin{lstlisting}[language=fanC,title=Testers]
-SEXP x;
 
-is_Rnull(SEXP x);
+\subsection{Lists and Dataframes}
+
+
+
+
+
+\subsection{Utility Functions}
+
+\begin{lstlisting}[language=fanC,title=Testers]
+int is_Rnull(SEXP x);
 int is_Rnan(SEXP x);
 int is_Rna(SEXP x);
 int is_double(SEXP x);
@@ -73,9 +123,10 @@ int is_integer(SEXP x);
 \end{lstlisting}
 
 
+
 \begin{lstlisting}[language=fanC,title=Misc]
-RNULL
-R_NilValue
+RNULL                                          // SEXPtools
+R_NilValue                                     // Native equiv.
 
 // Print any SEXP with R's printing
 SEXP x;
