@@ -1,5 +1,50 @@
-A set of tools to aid in dealing with R's native C interface.  Think of this 
-as a much dumber, less comprehensive, C version of Rcpp.
+What is this?
+====================================================================
+A set of tools to aid in dealing with R's native C interface.  Think of this
+as the next best thing to using Rcpp, but for pure C (and much less
+comprehensive).
 
-This package can be used much in the same way as Rcpp.  The package vignette
-explains how one may do so.  See src/tests and demo/ for example usage.
+If you spend a lot of time in pure C or interfacing to other compiled
+languages like Fortran, bringing C++ into the mix can be a recipe for 
+headaches and disaster.  Also, can take an extremely long time to 
+compile, so if you aren't really using the features of C++ (e.g., 
+just wrapping existing compiled code for use with R), then this is
+a needless way to slow down development time.  This can make the 
+otherwise very handy Rcpp into somewhat of a burden.  This package 
+tries to fill the "wrapper gap" for C programmers interfacing compiled 
+code to R.
+
+This package can be used much in the same way as Rcpp, though again, 
+it is much less comprehensive.  At this point, Rcpp is an entire 
+ecosystem of packages that make _writing_ compiled code for use with
+R simpler.  This package is about _wrapping_ code for use with R.
+
+The package vignette explains how to use SEXPtools.  See 
+src/tests and demo/ for example usage.  For example usage in real
+packages, see pbdBASE (especially), pbdDMAT, and memuse.
+
+
+
+How do I install it?
+====================================================================
+To install the package from github, I recommend using Hadley Wickham's
+devtools package, which you can get from the CRAN.  After installing that,
+you can enter
+
+library(devtools)
+install_github(username="wrathematics", repo="rgutenberg")
+
+into an R terminal to install this package.  See the manual and demos
+for an explanation of usage.
+
+
+
+Software license and disclaimer
+====================================================================
+This software is licensed under the permissive 2-clause BSD license.
+You can find a quick summary of the license here:
+
+https://tldrlegal.com/license/bsd-2-clause-license-%28freebsd%29
+
+The full terms of the license (it's very short) are contained in the
+LICENSE file in the root directory of the project.
