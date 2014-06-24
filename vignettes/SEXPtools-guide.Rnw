@@ -1,4 +1,4 @@
-%\VignetteIndexEntry{memuse-guide}
+%\VignetteIndexEntry{SEXPtools-guide}
 
 \documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
@@ -14,6 +14,14 @@
 
 
 \begin{document}
+
+\begin{figure}[h]
+\vspace{-.5in}
+  \begin{minipage}[c]{8.5in}
+  \hspace{-1.0in}
+  \includegraphics[width=8in,height=10in]{./cover/cover.pdf}
+  \end{minipage}
+\end{figure}
 
 \makefirstfew
 
