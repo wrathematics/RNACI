@@ -9,7 +9,7 @@ Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"),
 Description: Tools for simplifying R's native C interface.  Like a dumber,
         less comprehensive, C version of Rcpp.
 License: BSD 2-clause License + file LICENSE
-NeedsCompilation: Yes
+NeedsCompilation: yes
 Author: Drew Schmidt [aut, cre],
   Wei-Chen Chen [ctb]
 Maintainer: Drew Schmidt <schmidt@math.utk.edu>
