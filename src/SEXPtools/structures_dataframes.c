@@ -16,16 +16,14 @@ SEXP make_dataframe_default_colnames(int n)
   SEXP x;
   SEXP ret_names;
   
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   newRvec(x, n, "int");
   
   for (i=0; i<n; i++)
     INT(x,i) = i+1;
   
-  PT(ret_names);
-  ret_names = eval( lang2( install("make.names"), x), basePackage);
+  PT( ret_names = eval( lang2( install("make.names"), x), basePackage) );
   
   R_END;
   return ret_names;
