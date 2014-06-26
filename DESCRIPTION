@@ -6,8 +6,15 @@ Depends: R (>= 2.14.0)
 Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"), 
         email = "wrathematics@gmail.com"), 
         person("Wei-Chen", "Chen", role="ctb"))
-Description: Tools for simplifying R's native C interface for people
-        wrapping C and Fortran code for use with R.
+Description: This package contains some useful simplifications for R's native 
+        C interface. It can be used somewhat in the same way as Rcpp, though 
+        it is much less comprehensive in scope and execution than Rcpp.  Rcpp 
+        is an entire ecosystem of packages that make writing compiled code for 
+        use with R simpler.  This package is meant for wrapping existing
+        C/Fortran code for use with R.  Currently, the package is very young.  
+        At this time, most of its utility is found in the SEXP printer, SEXP 
+        allocation (and automatic gc counting), and the creation/management of 
+        lists and dataframes.
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
