@@ -11,14 +11,13 @@
 SEXP __Rvecalloc(int n, char *type, int init)
 {
   SEXP RET;
-  PROTECT(RET);
   int i;
   
   if (strcmp(type, "vec") == 0)
-    RET = allocVector(VECSXP, n);
+    PROTECT(RET = allocVector(VECSXP, n));
   else if (strcmp(type, "int") == 0)
   {
-    RET = allocVector(INTSXP, n);
+    PROTECT(RET = allocVector(INTSXP, n));
     
     if (init)
     {
@@ -31,7 +30,7 @@ SEXP __Rvecalloc(int n, char *type, int init)
   }
   else if (strcmp(type, "double") == 0 || strcmp(type, "dbl") == 0)
   {
-    RET = allocVector(REALSXP, n);
+    PROTECT(RET = allocVector(REALSXP, n));
     
     if (init)
     {
@@ -43,7 +42,9 @@ SEXP __Rvecalloc(int n, char *type, int init)
     }
   }
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
-    RET = allocVector(STRSXP, n);
+    PROTECT(RET = allocVector(STRSXP, n));
+  else
+    return NULL;
   
   UNPROTECT(1);
   return RET;
@@ -54,14 +55,13 @@ SEXP __Rvecalloc(int n, char *type, int init)
 SEXP __Rmatalloc(int m, int n, char *type, int init)
 {
   SEXP RET;
-  PROTECT(RET);
   int i, j;
   
   if (strcmp(type, "vec") == 0)
-    RET = allocMatrix(VECSXP, m, n);
+    PROTECT(RET = allocMatrix(VECSXP, m, n));
   else if (strcmp(type, "int") == 0)
   {
-    RET = allocMatrix(INTSXP, m, n);
+    PROTECT(RET = allocMatrix(INTSXP, m, n));
     
     if (init)
     {
@@ -77,7 +77,7 @@ SEXP __Rmatalloc(int m, int n, char *type, int init)
   }
   else if (strcmp(type, "double") == 0 || strcmp(type, "dbl") == 0)
   {
-    RET = allocMatrix(REALSXP, m, n);
+    PROTECT(RET = allocMatrix(REALSXP, m, n));
     
     if (init)
     {
@@ -92,7 +92,9 @@ SEXP __Rmatalloc(int m, int n, char *type, int init)
     }
   }
   else if (strcmp(type, "str") == 0 || strcmp(type, "char*") == 0)
-    RET = allocMatrix(STRSXP, m, n);
+    PROTECT(RET = allocMatrix(STRSXP, m, n));
+  else
+    return NULL;
   
   UNPROTECT(1);
   return RET;

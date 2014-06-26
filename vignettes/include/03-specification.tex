@@ -108,7 +108,28 @@ REAL(x)[i+nrows(x)*j]
 
 \subsection{Lists and Dataframes}
 
+For this section, only the \thispackage version is provided, because the native 
+equivalent is too horrifying to mention.
+\begin{lstlisting}[language=fanC,title=Lists]
+SEXP R_list, R_list_names;
+const int num.items = 3;
 
+// pretened we creates SEXP's item1, item2, and item3
+
+R_list_names = make_list_names(num.items, "name1", "name2", "name3"); // as many as you like
+R_list = make_list(R_list_names, num.items, item1, item2, item3);
+\end{lstlisting}
+
+This dataframe example uses \R default row and column names.  You can probably fill in the
+details from the above for the named case.
+\begin{lstlisting}[language=fanC,title=Dataframes]
+SEXP R_df;
+const int num.cols = 2;
+
+// pretened we creates SEXP's col1 and col2
+
+R_df = make_dataframe(RNULL, RNULL, num.names, col1, col2);
+\end{lstlisting}
 
 
 

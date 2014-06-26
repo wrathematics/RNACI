@@ -9,7 +9,6 @@ const double abs_eps = 1.1 * DBL_EPSILON;
 
 
 
-// x equal to 0
 int fis_zerof(float x)
 {
   if (fabsf(x) < abs_epsf*FLT_MIN)
@@ -27,8 +26,6 @@ int fis_zero(double x)
 }
 
 
-
-// x equal to y
 int fequalsf(float x, float y)
 {
   const double diff = fabsf(x - y);

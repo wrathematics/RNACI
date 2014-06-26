@@ -13,8 +13,7 @@ void PRINT(SEXP x)
   R_INIT;
   SEXP basePackage;
   
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   eval( lang2( install("print"), x), basePackage);
   

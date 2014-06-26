@@ -1,4 +1,4 @@
-%\VignetteIndexEntry{memuse-guide}
+%\VignetteIndexEntry{SEXPtools-guide}
 
 \documentclass[11pt]{article}
 \usepackage[margin=1.1in]{geometry}
@@ -10,10 +10,18 @@
 \mytitle{Guide to the\\ \pkg{SEXPtools} Package}
 \mysubtitle{A simplification to \R's native \C\ interface}
 \myauthor{Drew Schmidt\\ \texttt{wrathematics@gmail.com} }
-\myversion{0.1}
+\myversion{0.1.0}
 
 
 \begin{document}
+
+\begin{figure}[h]
+\vspace{-.5in}
+  \begin{minipage}[c]{8.5in}
+  \hspace{-1.0in}
+  \includegraphics[width=8in,height=10in]{./cover/cover.pdf}
+  \end{minipage}
+\end{figure}
 
 \makefirstfew
 

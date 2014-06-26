@@ -5,9 +5,6 @@
 // Copyright 2014, Schmidt
 
 
-// FIXME see 1150-1167 of Rinternals.h
-
-
 #include "SEXPtools.h"
 
 int is_Rnull(SEXP x)
@@ -16,9 +13,7 @@ int is_Rnull(SEXP x)
   SEXP basePackage;
   SEXP tmp;
   
-  PT(basePackage);
-  
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   tmp = eval( lang2( install("is.null"), x), basePackage);
   
@@ -34,8 +29,7 @@ int is_Rnan(SEXP x)
   SEXP basePackage;
   SEXP tmp;
 
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
 
   tmp = eval( lang2( install("is.nan"), x), basePackage);
 
@@ -51,8 +45,7 @@ int is_Rna(SEXP x)
   SEXP basePackage;
   SEXP tmp;
   
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   tmp = eval( lang2( install("is.na"), x), basePackage);
   
@@ -68,8 +61,7 @@ int is_double(SEXP x)
   SEXP basePackage;
   SEXP tmp;
   
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   tmp = eval( lang2( install("is.double"), x), basePackage);
   
@@ -85,8 +77,7 @@ int is_integer(SEXP x)
   SEXP basePackage;
   SEXP tmp;
   
-  PT(basePackage);
-  basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv );
+  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
   
   tmp = eval( lang2( install("is.integer"), x), basePackage);
   

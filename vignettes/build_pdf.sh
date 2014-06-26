@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PKGVER=`grep "Version:" ../DESCRIPTION | sed -e "s/Version: //"`
-sed -i -e "s/myversion{.*}/myversion{${PKGVER}}/" SEXPtools.Rnw
+sed -i -e "s/myversion{.*}/myversion{${PKGVER}}/" SEXPtools-guide.Rnw
 
 
 fil=`ls | grep "[.]Rnw"`
