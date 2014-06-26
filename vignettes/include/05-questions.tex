@@ -19,8 +19,9 @@ objects.
 
 
 \subsection{Is this now, or will this ever be a competitor to \pkg{Rcpp}?}
-In terms of features, no.  In some other respects yes; see \secref{sec:rcppdiffs} for
-details.
+In terms of features, no.  \pkg{Rcpp} is very good at aiding the writing of
+new code, or translating \R code into compiled code.  That is not a goal
+of this package.
 
 
 \subsection{How does this differ from \pkg{Rcpp}?}\label{sec:rcppdiffs}
@@ -35,6 +36,11 @@ you; you would likely be much better served by \pkg{Rcpp}.
 \C/\Fortran code and wrapping it back into \R.  This makes the wrapping a bit 
 simpler.  It does not make the translation of \R code into compiled code any 
 simpler, which is one of \pkg{Rcpp}'s main goals.
+
+\thispackage is a pure \C solution.  \pkg{Rcpp} is a \Cpp solution.  In the author's 
+opinion, \Cpp brings a lot of needless complications and headaches if you aren't
+actually using \Cpp; that is, if you are only writing \C and \Fortran, then 
+bringing in \Cpp \textbf{will} create problems.  
 
 Another important difference is that \thispackage is more permissively 
 licensed than \pkg{Rcpp} (BSD rather than GPL).  If this issue is important to 

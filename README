@@ -1,7 +1,7 @@
 What is this?
 ====================================================================
-A set of tools to aid in dealing with R's native C interface.  Think of this
-as the next best thing to using Rcpp, but for pure C (and much less
+A set of tools to aid in dealing with R's native C interface.  Think of 
+this as the next best thing to using Rcpp, but for pure C (and much less
 comprehensive).
 
 If you spend a lot of time in pure C or interfacing to other compiled

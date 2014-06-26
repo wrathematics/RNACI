@@ -10,7 +10,7 @@
 \mytitle{Guide to the\\ \pkg{SEXPtools} Package}
 \mysubtitle{A simplification to \R's native \C\ interface}
 \myauthor{Drew Schmidt\\ \texttt{wrathematics@gmail.com} }
-\myversion{0.1}
+\myversion{0.1.0}
 
 
 \begin{document}

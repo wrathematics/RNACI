@@ -5,9 +5,6 @@
 // Copyright 2014, Schmidt
 
 
-// FIXME see 1150-1167 of Rinternals.h
-
-
 #include "SEXPtools.h"
 
 int is_Rnull(SEXP x)
