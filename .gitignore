@@ -13,3 +13,4 @@
 *.toc
 *.tex.backup
 
+inst/include

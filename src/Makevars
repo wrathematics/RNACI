@@ -10,9 +10,10 @@ SEXP_OBJS = \
 	structures_dataframes.o \
 	structures_lists.o \
 	structures_misc.o
+
 R_OBJS = \
-	tests.o \
-	package_examples.o
+	zzz_tests.o \
+	zzz_examples.o
 OBJECTS = $(R_OBJS) $(SEXP_OBJS)
 
 ### Make Start

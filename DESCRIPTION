@@ -5,7 +5,7 @@ Date: 2014-1-7
 Depends: R (>= 2.14.0)
 Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"), 
         email = "wrathematics@gmail.com"), 
-        person("Wei-Chen", "Chen", role="ctb"))
+        person("Wei-Chen", "Chen", role="aut"))
 Description: This package contains a set of hopefully useful functions and 
         macros that live on top of R's native C interface. It can be used 
         somewhat in the same way as Rcpp, though it is much less comprehensive 
@@ -21,6 +21,3 @@ Description: This package contains a set of hopefully useful functions and
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
-Packaged: 2014-06-28 04:17:55 UTC; snoweye
-Author: Drew Schmidt [aut, cre],
-  Wei-Chen Chen [ctb]
