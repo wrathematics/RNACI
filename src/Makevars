@@ -26,7 +26,7 @@ all: $(SHLIBS) librnaci.a
 $(SHLIB): $(OBJECTS)
 
 librnaci.a: $(SHLIB)
-	$(AR) cr librnaci.a $(SEXP_OBJS)
+	$(AR) cr librnaci.a $(RNACI_OBJS)
 	$(RANLIB) librnaci.a
 
 clean:
