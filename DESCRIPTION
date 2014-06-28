@@ -18,3 +18,6 @@ Description: This package contains some useful simplifications for R's native
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
+Packaged: 2014-06-28 03:22:40 UTC; snoweye
+Author: Drew Schmidt [aut, cre],
+  Wei-Chen Chen [ctb]
