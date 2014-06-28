@@ -1,4 +1,4 @@
 ### Checks for memory leaks
-library(SEXPtools)
+library(RNACI)
 
-SEXPtools:::test_list()
+RNACI:::test_list()

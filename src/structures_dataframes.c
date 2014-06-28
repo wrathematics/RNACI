@@ -5,7 +5,7 @@
 // Copyright 2014, Schmidt
 
 
-#include "SEXPtools.h"
+#include "RNACI.h"
 
 // Internals
 SEXP make_dataframe_default_colnames(int n)

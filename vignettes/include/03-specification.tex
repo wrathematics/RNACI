@@ -1,7 +1,7 @@
 \section{Specification}\label{specification}
 
 If you are familiar with \R's native \C interface already, then you may simply 
-wish to view \code{src/SEXPtools/SEXPtools.h} of the \thispackage source tree.
+wish to view \code{src/RNACI.h} of the \thispackage source tree.
 
 
 
@@ -25,26 +25,26 @@ SEXP x;
 int m, n;
 
 // Construct R list object
-newRlist(x, n);                                 // SEXPtools
+newRlist(x, n);                                 // RNACI
 PROTECT(x = allocVector(VECSXP, n));            // Native equiv.
 
 // Construct numeric R vector with C-type 'type'
-newRvec(x, n, type);                            // SEXPtools
+newRvec(x, n, type);                            // RNACI
 PROTECT(x = allocVector(<SEXPTYPE>, n));        // Native equiv.
 
 // Construct numeric R matrix
-newRmat(x, m, n, type);                         // SEXPtools
+newRmat(x, m, n, type);                         // RNACI
 PROTECT(x = allocMatrix(<SEXPTYPE>, m, n));     // Native equiv.
 \end{lstlisting}
 
 
 \begin{lstlisting}[language=fanC,title=Allocation Examples]
 // A length 10 integer vector
-newRvec(x, 10, "int");                          // SEXPtools
+newRvec(x, 10, "int");                          // RNACI
 PROTECT(x = allocVector(INTSXP, 10));           // Native equiv.
 
 // A 5 by 2 integer matrix
-newRmat(x, 5, 2, "int");                       // SEXPtools
+newRmat(x, 5, 2, "int");                       // RNACI
 PROTECT(x = allocMatrix(INTSXP, 5, 2));        // Native equiv.
 \end{lstlisting}
 
@@ -58,7 +58,7 @@ track of the number of \code{PROTECT}'d objects.
 
 \begin{center}
 \begin{minipage}{.485\textwidth}\centering
-\begin{lstlisting}[language=fanC,title=SEXPtools Data Accessors]
+\begin{lstlisting}[language=fanC,title=RNACI Data Accessors]
 SEXP x;
 int i, j;
 
@@ -146,7 +146,7 @@ int is_integer(SEXP x);
 
 
 \begin{lstlisting}[language=fanC,title=Misc]
-RNULL                                          // SEXPtools
+RNULL                                          // RNACI
 R_NilValue                                     // Native equiv.
 
 // Print any SEXP with R's printing

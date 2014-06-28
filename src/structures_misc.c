@@ -4,7 +4,7 @@
 
 // Copyright 2014, Schmidt
 
-#include "SEXPtools.h"
+#include "RNACI.h"
 
 
 void set_list_names(SEXP R_list, SEXP R_names)

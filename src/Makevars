@@ -2,7 +2,7 @@
 PKG_CPPFLAGS = -w
 
 ### Objective Files
-SEXP_OBJS = \
+RNACI_OBJS = \
 	alloc.o \
 	floats.o \
 	misc.o \
@@ -14,20 +14,20 @@ SEXP_OBJS = \
 R_OBJS = \
 	zzz_tests.o \
 	zzz_examples.o
-OBJECTS = $(R_OBJS) $(SEXP_OBJS)
+OBJECTS = $(R_OBJS) $(RNACI_OBJS)
 
 ### Make Start
-all: $(SHLIBS) libsexptools.a
+all: $(SHLIBS) librnaci.a
 	mkdir -p ../inst/lib$(R_ARCH)
 	mkdir -p ../inst/include
-	cp libsexptools.a ../inst/lib$(R_ARCH)
-	cp SEXPtools.h ../inst/include
+	cp librnaci.a ../inst/lib$(R_ARCH)
+	cp RNACI.h ../inst/include
 
 $(SHLIB): $(OBJECTS)
 
-libsexptools.a: $(SHLIB)
-	$(AR) cr libsexptools.a $(SEXP_OBJS)
-	$(RANLIB) libsexptools.a
+librnaci.a: $(SHLIB)
+	$(AR) cr librnaci.a $(SEXP_OBJS)
+	$(RANLIB) librnaci.a
 
 clean:
 	rm -rf *.o *.d *.rc *.so* *.dll *.dylib *.a *.lib Makedeps

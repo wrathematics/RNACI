@@ -5,8 +5,8 @@
 // Copyright 2014, Schmidt
 
 
-#ifndef __SEXPTOOLS_H__
-#define __SEXPTOOLS_H__
+#ifndef __RNACI_H__
+#define __RNACI_H__
 
 
 #include <R.h>
@@ -23,14 +23,14 @@
 #define OPTIONALARG1(a,b,...) (a),(b)
 
 // R data accessors
-#define __SEXPtools_INT(x,y,...) INTEGER(x)[y]
-#define INT(x,...) __SEXPtools_INT(x,##__VA_ARGS__,0)
+#define __RNACI_INT(x,y,...) INTEGER(x)[y]
+#define INT(x,...) __RNACI_INT(x,##__VA_ARGS__,0)
 
-#define __SEXPtools_DBL(x,y,...) REAL(x)[y]
-#define DBL(x,...) __SEXPtools_DBL(x,##__VA_ARGS__,0)
+#define __RNACI_DBL(x,y,...) REAL(x)[y]
+#define DBL(x,...) __RNACI_DBL(x,##__VA_ARGS__,0)
 
-#define __SEXPtools_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
-#define STR(x,...) __SEXPtools_STR(x,##__VA_ARGS__,0)
+#define __RNACI_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
+#define STR(x,...) __RNACI_STR(x,##__VA_ARGS__,0)
 
 //#define INT(x,i) (INTEGER(x)[i])
 //#define DBL(x,i) (REAL(x)[i])
@@ -45,9 +45,9 @@
 
 
 // GC stuff
-#define R_INIT int __SEXPtools_SEXP_protect_counter=0
-#define PT(x) PROTECT((x)); (__SEXPtools_SEXP_protect_counter)++
-#define R_END (UNPROTECT(__SEXPtools_SEXP_protect_counter))
+#define R_INIT int __RNACI_SEXP_protect_counter=0
+#define PT(x) PROTECT((x)); (__RNACI_SEXP_protect_counter)++
+#define R_END (UNPROTECT(__RNACI_SEXP_protect_counter))
 
 
 // Allocations
@@ -64,13 +64,13 @@
 #define is_null(x) (x==NULL)
 
 #if __STDC_VERSION__ >= 199901L
-#define dbstart printf("DEBUGGING in %s Started\n", __func__);int __SEXPtools_debug_printing_counter=0
+#define dbstart printf("DEBUGGING in %s Started\n", __func__);int __RNACI_debug_printing_counter=0
 #define dbstop printf("DEBUGGING in %s Ended\n", __func__)
 #else
-#define dbstart int __SEXPtools_debug_printing_counter=0
+#define dbstart int __RNACI_debug_printing_counter=0
 #endif
 
-#define dbshow printf("%d\n", __SEXPtools_debug_printing_counter);__SEXPtools_debug_printing_counter++;
+#define dbshow printf("%d\n", __RNACI_debug_printing_counter);__RNACI_debug_printing_counter++;
 
 
 // alloc.c

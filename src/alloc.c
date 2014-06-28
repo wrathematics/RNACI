@@ -5,7 +5,7 @@
 // Copyright 2014, Schmidt
 
 
-#include "SEXPtools.h"
+#include "RNACI.h"
 
 
 SEXP __Rvecalloc(int n, char *type, int init)

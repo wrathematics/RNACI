@@ -5,7 +5,7 @@
 // Copyright 2014, Schmidt
 
 
-#include "SEXPtools.h"
+#include "RNACI.h"
 
 int is_Rnull(SEXP x)
 {

@@ -1,23 +1,23 @@
-library(SEXPtools, quietly=TRUE)
+library(RNACI, quietly=TRUE)
 
 
 ### Lists
 a <- list(abc=1:2, defg=-10.10214)
-b <- SEXPtools:::test_list(TRUE)
+b <- RNACI:::test_list(TRUE)
 all.equal(a, b)
 
 names(a) <- NULL
-b <- SEXPtools:::test_list(FALSE)
+b <- RNACI:::test_list(FALSE)
 all.equal(a, b)
 
 
 ### Dataframes
 a <- data.frame(X1=1:2, X2=c(-10.10214, 1.23456))
-b <- SEXPtools:::test_df()
+b <- RNACI:::test_df()
 all.equal(a, b)
 
 
 ### Printing
-SEXPtools:::test_print()
+RNACI:::test_print()
 
 

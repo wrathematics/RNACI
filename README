@@ -32,13 +32,13 @@ devtools package, which you can get from the CRAN.  After installing that,
 you can enter
 
 library(devtools)
-install_github(username="wrathematics", repo="SEXPtools")
+install_github(username="wrathematics", repo="RNACI")
 
 into an R terminal to install this package.  See the manual and demos
 for an explanation of usage.
 
-The package vignette explains how to use SEXPtools and how to link
-an R package with SEXPtools.  See SEXPtools/src/tests and SEXPtools/demo/ 
+The package vignette explains how to use RNACI and how to link
+an R package with RNACI.  See RNACI/src/zzz_tests.c and RNACI/src/zzz_examples.c 
 for example usage.  For example usage in real packages, see pbdBASE 
 (especially), pbdDMAT, and memuse.
 

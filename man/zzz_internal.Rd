@@ -1,4 +1,4 @@
-\name{SEXPtools.internal}
+\name{RNACI.internal}
 \title{ All Internal Functions }
 \description{ All internal functions }
 \keyword{internal}

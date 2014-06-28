@@ -1,4 +1,4 @@
-#include "SEXPtools.h"
+#include "RNACI.h"
 #include <math.h>
 #include <float.h>
 

@@ -1,4 +1,4 @@
-useDynLib(SEXPtools)
+useDynLib(RNACI)
 
 # All internal functions
 #exportPattern("^[[:alpha:]]+")
