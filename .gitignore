@@ -8,9 +8,6 @@
 *.status
 *~
 
-src/Makeconf
-src/Makevars
-
 *.aux
 *.out
 *.toc

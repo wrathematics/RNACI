@@ -21,3 +21,6 @@ Description: This package contains a set of hopefully useful functions and
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
+Packaged: 2014-06-28 04:17:55 UTC; snoweye
+Author: Drew Schmidt [aut, cre],
+  Wei-Chen Chen [ctb]

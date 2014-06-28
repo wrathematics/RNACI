@@ -1,0 +1,33 @@
+### PKG
+PKG_CPPFLAGS = -w
+
+### Objective Files
+SEXP_OBJS = \
+	alloc.o \
+	floats.o \
+	misc.o \
+	printing.o \
+	structures_dataframes.o \
+	structures_lists.o \
+	structures_misc.o
+R_OBJS = \
+	tests.o \
+	package_examples.o
+OBJECTS = $(R_OBJS) $(SEXP_OBJS)
+
+### Make Start
+all: $(SHLIBS) libsexptools.a
+	mkdir -p ../inst/lib$(R_ARCH)
+	mkdir -p ../inst/include
+	cp libsexptools.a ../inst/lib$(R_ARCH)
+	cp SEXPtools.h ../inst/include
+
+$(SHLIB): $(OBJECTS)
+
+libsexptools.a: $(SHLIB)
+	$(AR) cr libsexptools.a $(SEXP_OBJS)
+	$(RANLIB) libsexptools.a
+
+clean:
+	rm -rf *.o *.d *.rc *.so* *.dll *.dylib *.a *.lib Makedeps
+	rm -rf ../inst/lib* ../inst/etc* ../inst/include
