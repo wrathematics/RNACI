@@ -4,7 +4,7 @@
 
 // Copyright 2013, Schmidt
 
-#include "../SEXPtools/SEXPtools.h"
+#include "SEXPtools.h"
 
 
 // Lists
