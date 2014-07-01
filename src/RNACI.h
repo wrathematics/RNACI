@@ -32,16 +32,28 @@
 #define __RNACI_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
 #define STR(x,...) __RNACI_STR(x,##__VA_ARGS__,0)
 
-//#define INT(x,i) (INTEGER(x)[i])
-//#define DBL(x,i) (REAL(x)[i])
-//#define STR(x,i) ((char*)CHAR(STRING_ELT(x,i)))
-
 
 #define MatINT(x,i,j) (INTEGER(x)[i+nrows(x)*j])
 #define MatDBL(x,i,j) (REAL(x)[i+nrows(x)*j])
 
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
+
+
+
+#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE)
+#define getRptr(ptr) R_ExternalPtrAddr(ptr);
+
+#define newRfreeptrfun(FNAME,TYPE,FREEFUN) \
+static void FNAME(SEXP ptr) \
+{ \
+  if (NULL == R_ExternalPtrAddr(ptr)) return; \
+  TYPE *tmp = (TYPE *) R_ExternalPtrAddr(ptr); \
+  FREEFUN(tmp); \
+  R_ClearExternalPtr(ptr); \
+}
+
+
 
 
 // GC stuff
