@@ -6,27 +6,37 @@
 
 
 #include "RNACI.h"
+#include <math.h>
+
+#define MAX(m,n) m<n?n:m
+
 
 // Internals
-SEXP make_dataframe_default_colnames(int n)
+SEXP make_dataframe_default_colnames(const int n)
 {
   R_INIT;
   int i;
-  SEXP basePackage;
-  SEXP x;
-  SEXP ret_names;
+  int buflen;
+  SEXP ret;
   
-  PT( basePackage = eval( lang2( install("getNamespace"), ScalarString(mkChar("base")) ), R_GlobalEnv ) );
+  buflen = (int) (ceil(log10((double)n)) + 1.);
+  char *buf = malloc(buflen * sizeof(buf));
+  buf[0] = 'X';
   
-  newRvec(x, n, "int");
+  newRlist(ret, n);
   
   for (i=0; i<n; i++)
-    INT(x,i) = i+1;
+  {
+    sprintf(buf+1, "%d", i+1);
+    buflen = (int) (ceil(log10((double)i+2)) + 1.);
+    buflen = MAX(buflen, 2);
+    SET_VECTOR_ELT(ret, i, mkCharLen(buf, buflen));
+  }
   
-  PT( ret_names = eval( lang2( install("make.names"), x), basePackage) );
+  free(buf);
   
   R_END;
-  return ret_names;
+  return ret;
 }
 
 
