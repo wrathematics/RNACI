@@ -20,7 +20,7 @@ SEXP make_dataframe_default_colnames(const int n)
   SEXP ret;
   
   buflen = (int) (ceil(log10((double)n)) + 1.);
-  char *buf = malloc(buflen * sizeof(buf));
+  char *buf = malloc(buflen * sizeof(*buf));
   buf[0] = 'X';
   
   newRlist(ret, n);

@@ -62,7 +62,7 @@ SEXP test_df()
 {
   R_INIT;
   SEXP a, b;
-  SEXP R_df, R_df_names;
+  SEXP R_df;
   
   newRvec(a, 2, "int");
   newRvec(b, 2, "double");
@@ -74,7 +74,6 @@ SEXP test_df()
   DBL(b,1) = 1.23456;
   
   // df without names
-  R_df_names = make_list_names(2, "abc", "defg");
   R_df = make_dataframe(RNULL, RNULL, 2, a, b);
   
   R_END;
