@@ -2,7 +2,7 @@
  * License. If a copy of the this license was not distributed with this
  * file, you can obtain one from http://opensource.org/licenses/BSD-2-Clause. */
 
-// Copyright 2014, Schmidt
+// Copyright 2014-2015, Schmidt
 
 
 #include "RNACI.h"
