@@ -19,3 +19,5 @@ Description: A set of C functions and macros that live on
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
+URL: https://github.com/wrathematics/RNACI
+BugReports: https://github.com/wrathematics/RNACI/issues
