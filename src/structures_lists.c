@@ -1,15 +1,4 @@
-/* This Source Code Form is subject to the terms of the BSD 2-Clause
- * License. If a copy of the this license was not distributed with this
- * file, you can obtain one from http://opensource.org/licenses/BSD-2-Clause. */
-
-// Copyright 2014, Schmidt
-
-
-#include "RNACI.h"
-
-
-// Build lists
-SEXP make_list_names(int n, ...)
+RNACI_FUNTYPE SEXP make_list_names(int n, ...)
 {
   R_INIT;
   int i;
@@ -36,7 +25,7 @@ SEXP make_list_names(int n, ...)
 
 
 
-SEXP make_list(SEXP R_list_names, const int n, ...)
+RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...)
 {
   R_INIT;
   int i;
@@ -64,5 +53,3 @@ SEXP make_list(SEXP R_list_names, const int n, ...)
   R_END;
   return R_list;
 }
-
-

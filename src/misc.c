@@ -1,13 +1,4 @@
-/* This Source Code Form is subject to the terms of the BSD 2-Clause
- * License. If a copy of the this license was not distributed with this
- * file, you can obtain one from http://opensource.org/licenses/BSD-2-Clause. */
-
-// Copyright 2014, Schmidt
-
-
-#include "RNACI.h"
-
-int is_Rnull(SEXP x)
+RNACI_FUNTYPE int is_Rnull(SEXP x)
 {
   R_INIT;
   SEXP basePackage;
@@ -23,7 +14,7 @@ int is_Rnull(SEXP x)
 
 
 
-int is_Rnan(SEXP x)
+RNACI_FUNTYPE int is_Rnan(SEXP x)
 {
   R_INIT;
   SEXP basePackage;
@@ -39,7 +30,7 @@ int is_Rnan(SEXP x)
 
 
 
-int is_Rna(SEXP x)
+RNACI_FUNTYPE int is_Rna(SEXP x)
 {
   R_INIT;
   SEXP basePackage;
@@ -55,7 +46,7 @@ int is_Rna(SEXP x)
 
 
 
-int is_double(SEXP x)
+RNACI_FUNTYPE int is_double(SEXP x)
 {
   R_INIT;
   SEXP basePackage;
@@ -71,7 +62,7 @@ int is_double(SEXP x)
 
 
 
-int is_integer(SEXP x)
+RNACI_FUNTYPE int is_integer(SEXP x)
 {
   R_INIT;
   SEXP basePackage;
@@ -84,4 +75,3 @@ int is_integer(SEXP x)
   R_END;
   return INT(tmp,0);
 }
-

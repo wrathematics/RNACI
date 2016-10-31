@@ -1,18 +1,4 @@
-/* This Source Code Form is subject to the terms of the BSD 2-Clause
- * License. If a copy of the this license was not distributed with this
- * file, you can obtain one from http://opensource.org/licenses/BSD-2-Clause. */
-
-// Copyright 2014-2015, Schmidt
-
-
-#include "RNACI.h"
-#include <math.h>
-
-#define MAX(m,n) m<n?n:m
-
-
-// Internals
-SEXP make_dataframe_default_colnames(const int n)
+RNACI_FUNTYPE SEXP make_dataframe_default_colnames(const int n)
 {
   R_INIT;
   int i;
@@ -29,7 +15,7 @@ SEXP make_dataframe_default_colnames(const int n)
   {
     sprintf(buf+1, "%d", i+1);
     buflen = (int) (ceil(log10((double)i+2)) + 1.);
-    buflen = MAX(buflen, 2);
+    buflen = RNACI_MAX(buflen, 2);
     SET_VECTOR_ELT(ret, i, mkCharLen(buf, buflen));
   }
   
@@ -41,7 +27,7 @@ SEXP make_dataframe_default_colnames(const int n)
 
 
 
-SEXP make_dataframe_default_rownames(int n)
+RNACI_FUNTYPE SEXP make_dataframe_default_rownames(int n)
 {
   R_INIT;
   int i;
@@ -58,8 +44,7 @@ SEXP make_dataframe_default_rownames(int n)
 
 
 
-// Actually useful things
-SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
+RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
 {
   R_INIT;
   int i;
@@ -106,5 +91,3 @@ SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
   R_END;
   return R_df;
 }
-
-

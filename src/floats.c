@@ -1,24 +1,17 @@
-#include "RNACI.h"
-#include <math.h>
-#include <float.h>
-
-
-// Absolute epsilons
-const float abs_epsf = 1.1f * FLT_EPSILON;
-const double abs_eps = 1.1 * DBL_EPSILON;
-
-
-
-int fis_zerof(float x)
+RNACI_FUNTYPE int fis_zerof(float x)
 {
+  const float abs_epsf = 1.1f * FLT_EPSILON;
   if (fabsf(x) < abs_epsf*FLT_MIN)
     return true;
   else
     return false;
 }
 
-int fis_zero(double x)
+
+
+RNACI_FUNTYPE int fis_zero(double x)
 {
+  const double abs_eps = 1.1 * DBL_EPSILON;
   if (fabs(x) < abs_eps*DBL_MIN)
     return true;
   else
@@ -26,8 +19,10 @@ int fis_zero(double x)
 }
 
 
-int fequalsf(float x, float y)
+
+RNACI_FUNTYPE int fequalsf(float x, float y)
 {
+  const float abs_epsf = 1.1f * FLT_EPSILON;
   const double diff = fabsf(x - y);
   
   if (x == y)
@@ -38,8 +33,11 @@ int fequalsf(float x, float y)
     return diff/(fabsf(x) + fabsf(y)) < abs_epsf;
 }
 
-int fequals(double x, double y)
+
+
+RNACI_FUNTYPE int fequals(double x, double y)
 {
+  const double abs_eps = 1.1 * DBL_EPSILON;
   const double diff = fabs(x - y);
   
   if (x == y)
@@ -49,5 +47,3 @@ int fequals(double x, double y)
   else
     return diff/(fabs(x) + fabs(y)) < abs_eps;
 }
-
-
