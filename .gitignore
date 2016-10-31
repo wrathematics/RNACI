@@ -14,5 +14,6 @@
 *.tex.backup
 
 Rpkg/inst/include
+Rpkg/src/RNACI*
 
 build/*
