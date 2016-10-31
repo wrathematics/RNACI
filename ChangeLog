@@ -1,6 +1,15 @@
-======================= Log Before Release =====================================
-2014-06-27:
-  * Get rid of .o information problem.
-  * Get rid of abort and runtime problem.
-  * Get rid of configure.ac, configure, install.lib.R and so on.
-  * Rewrite Makevars.
+Version 0.4-0:
+  * Clean up internals; better internal guarding.
+  * Deprecate non-double float functions.
+  * Create build system for non-header-only uses.
+
+Version 0.3-0:
+  * Fixed warnings visible with -Wall -pedantic.
+  * Use strnlen() over strlen(); shorten string checks in allocator.
+  * Simplify initializer in allocator using memset().
+
+Version 0.2-0:
+  * Converted to header only.
+
+Version 0.1-0:
+  * Initial release.
