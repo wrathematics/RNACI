@@ -1,7 +1,6 @@
 # RNACI 
 
 * **Version:** 0.2.0
-* **Status:** [![Build Status](https://travis-ci.org/wrathematics/RNACI.png)](https://travis-ci.org/wrathematics/RNACI) 
 * **License:** [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt and Wei-Chen Chen
 
@@ -34,5 +33,3 @@ The package vignette explains how to use RNACI and how to link
 an R package with RNACI.  See `RNACI/src/zzz_tests.c` and 
 `RNACI/src/zzz_examples.c` for example usage.  For example usage 
 in real packages, see pbdBASE (especially), pbdDMAT, and memuse.
-
-
