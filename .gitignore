@@ -13,4 +13,6 @@
 *.toc
 *.tex.backup
 
-inst/include
+Rpkg/inst/include
+
+build/*
