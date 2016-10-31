@@ -1,0 +1,34 @@
+### PKG
+PKG_CPPFLAGS = -w
+
+### Objective Files
+RNACI_OBJS = \
+	alloc.o \
+	floats.o \
+	misc.o \
+	printing.o \
+	structures_dataframes.o \
+	structures_lists.o \
+	structures_misc.o
+
+R_OBJS = \
+	zzz_tests.o \
+	zzz_examples.o
+OBJECTS = $(R_OBJS) $(RNACI_OBJS)
+
+### Make Start
+all: $(SHLIBS) librnaci.a
+	mkdir -p ../inst/lib$(R_ARCH)
+	mkdir -p ../inst/include
+	cp librnaci.a ../inst/lib$(R_ARCH)
+	cp RNACI.h ../inst/include
+
+$(SHLIB): $(OBJECTS)
+
+librnaci.a: $(SHLIB)
+	$(AR) cr librnaci.a $(RNACI_OBJS)
+	$(RANLIB) librnaci.a
+
+clean:
+	rm -rf *.o *.d *.rc *.so* *.dll *.dylib *.a *.lib Makedeps
+	rm -rf ../inst/lib* ../inst/etc* ../inst/include
