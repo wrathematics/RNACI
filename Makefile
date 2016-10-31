@@ -1,9 +1,12 @@
 all: headeronlysrc regularsrc
 
-headeronlysrc:
+builddir:
+	mkdir -p build/
+
+headeronlysrc: builddir
 	./utils/build_ho.sh
 
-regularsrc:
+regularsrc: builddir
 	cd utils && ./build.sh
 
 Rpackage: regularsrc
