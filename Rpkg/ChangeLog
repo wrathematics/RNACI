@@ -1,6 +1,0 @@
-======================= Log Before Release =====================================
-2014-06-27:
-  * Get rid of .o information problem.
-  * Get rid of abort and runtime problem.
-  * Get rid of configure.ac, configure, install.lib.R and so on.
-  * Rewrite Makevars.
