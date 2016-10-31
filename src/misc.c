@@ -12,8 +12,6 @@ RNACI_FUNTYPE int is_Rnull(SEXP x)
   return INT(tmp,0);
 }
 
-
-
 RNACI_FUNTYPE int is_Rnan(SEXP x)
 {
   R_INIT;
@@ -27,8 +25,6 @@ RNACI_FUNTYPE int is_Rnan(SEXP x)
   R_END;
   return INT(tmp,0);
 }
-
-
 
 RNACI_FUNTYPE int is_Rna(SEXP x)
 {
@@ -44,8 +40,6 @@ RNACI_FUNTYPE int is_Rna(SEXP x)
   return INT(tmp,0);
 }
 
-
-
 RNACI_FUNTYPE int is_double(SEXP x)
 {
   R_INIT;
@@ -59,8 +53,6 @@ RNACI_FUNTYPE int is_double(SEXP x)
   R_END;
   return INT(tmp,0);
 }
-
-
 
 RNACI_FUNTYPE int is_integer(SEXP x)
 {

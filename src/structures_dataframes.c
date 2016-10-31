@@ -25,8 +25,6 @@ RNACI_FUNTYPE SEXP make_dataframe_default_colnames(const int n)
   return ret;
 }
 
-
-
 RNACI_FUNTYPE SEXP make_dataframe_default_rownames(int n)
 {
   R_INIT;
@@ -41,8 +39,6 @@ RNACI_FUNTYPE SEXP make_dataframe_default_rownames(int n)
   R_END;
   return ret_names;
 }
-
-
 
 RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
 {

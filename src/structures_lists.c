@@ -23,8 +23,6 @@ RNACI_FUNTYPE SEXP make_list_names(int n, ...)
   return R_list_names;
 }
 
-
-
 RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...)
 {
   R_INIT;
