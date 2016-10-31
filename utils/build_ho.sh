@@ -1,8 +1,19 @@
 #!/bin/sh
 
-ROOTDIR="../"
-OUTDIR="${ROOTDIR}/build/headeronly/"
+export PROJROOT="../"
+export OUTDIR="${PROJROOT}/build/headeronly/"
 
+COMMENT_FILE(){
+  cat $1 | sed -e 's/^/\/\/ /' >> $OUTFILE
+}
+
+ECHO_FILE(){
+  echo -e $1 >> $OUTFILE
+}
+
+CAT_FILE(){
+  cat $1 | sed -e "s/RNACI_FUNTYPE/static inline/g" >> $OUTFILE
+}
 
 if [ -d $OUTDIR ]; then
   rm -rf $OUTDIR
@@ -12,28 +23,30 @@ mkdir $OUTDIR
 
 OUTFILE="${OUTDIR}/RNACI.h"
 
-echo -e "// NOTE: file generated automatically from RNACI source; do not edit by hand\n\n" >> $OUTFILE
+ECHO_FILE "// NOTE: file generated automatically from RNACI source; do not edit by hand\n"
 
-cat files/license.txt > $OUTFILE
+COMMENT_FILE "${PROJROOT}/LICENSE.md"
+ECHO_FILE "\n// Changelog:"
+COMMENT_FILE "${PROJROOT}/ChangeLog"
 
-echo "#ifndef __RNACI_H__" >> $OUTFILE
-echo "#define __RNACI_H__" >> $OUTFILE
-echo -e "\n\n" >> $OUTFILE
+ECHO_FILE "\n"
+ECHO_FILE "#ifndef __RNACI_H__"
+ECHO_FILE "#define __RNACI_H__"
+ECHO_FILE "\n"
 
-cat "${ROOTDIR}/src/build_type.h" | sed -e "s/SETME/1" >> $OUTFILE
+CAT_FILE "${PROJROOT}/src/API.h"
 
-cat "${ROOTDIR}/src/API.h"
+ECHO_FILE "\n\n"
+ECHO_FILE "//----------------------------------------------------------------"
+ECHO_FILE "// Definitions"
+ECHO_FILE "//----------------------------------------------------------------"
+ECHO_FILE ""
 
-echo -e "\n\n" >> $OUTFILE
-echo "/***************************************************" >> $OUTFILE
-echo " * Definitions *" >> $OUTFILE
-echo " ***************************************************/" >> $OUTFILE
-echo -e "\n\n" >> $OUTFILE
 
-for f in `ls ${ROOTDIR}/src/*.c`; do
-  echo "// $f"
-  cat $f >> $OUTFILE
+for f in `ls ${PROJROOT}/src/*.c`; do
+  ECHO_FILE "// ${f}"
+  CAT_FILE $f
+  ECHO_FILE "\n\n"
 done
 
-echo -e "\n\n" >> $OUTFILE
-echo "#endif" >> $OUTFILE
+ECHO_FILE "#endif"
