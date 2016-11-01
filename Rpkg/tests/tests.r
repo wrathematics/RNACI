@@ -12,12 +12,10 @@ all.equal(a, b)
 
 
 ### Dataframes
-a <- data.frame(X1=1:2, X2=c(-10.10214, 1.23456))
+a <- data.frame(X1=1:4, X2=123456/(1:4))
 b <- RNACI:::test_df()
 all.equal(a, b)
 
 
 ### Printing
 RNACI:::test_print()
-
-

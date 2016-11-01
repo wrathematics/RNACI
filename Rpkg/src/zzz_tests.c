@@ -65,22 +65,21 @@ SEXP test_df()
   SEXP a, b;
   SEXP R_df;
   
-  newRvec(a, 2, "int");
-  newRvec(b, 2, "double");
+  const int nrows = 4;
+  newRvec(a, nrows, "int");
+  newRvec(b, nrows, "double");
   
-  INT(a,0) = 1;
-  INT(a,1) = 2;
+  for (int i=0; i<nrows; i++)
+    INT(a, i) = i+1;
   
-  DBL(b,0) = -10.10214;
-  DBL(b,1) = 1.23456;
+  for (int i=0; i<nrows; i++)
+    DBL(b, i) = 123456 / (double)(i+1);
   
   // df without names
   R_df = make_dataframe(RNULL, RNULL, 2, a, b);
   
+  PRINT(R_df);
+  
   R_END;
   return R_df;
 }
-
-
-
-

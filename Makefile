@@ -10,7 +10,7 @@ regularsrc: builddir
 	cd utils && ./build.sh
 
 Rpackage: regularsrc
-	cp build/regular/* Rpkg/src/ && R CMD INSTALL Rpkg
+	cp build/headeronly/RNACI.h Rpkg/src/ && R CMD INSTALL Rpkg
 
 
 clean:

@@ -28,6 +28,3 @@ SEXP example_df()
   return R_df;
 }
 
-
-
-
