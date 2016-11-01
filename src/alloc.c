@@ -1,4 +1,4 @@
-RNACI_FUNTYPE SEXP __Rvecalloc(int n, char *type, int init)
+static inline SEXP __Rvecalloc(int n, char *type, int init)
 {
   SEXP RET;
   
@@ -27,7 +27,7 @@ RNACI_FUNTYPE SEXP __Rvecalloc(int n, char *type, int init)
   return RET;
 }
 
-RNACI_FUNTYPE SEXP __Rmatalloc(int m, int n, char *type, int init)
+static inline SEXP __Rmatalloc(int m, int n, char *type, int init)
 {
   SEXP RET;
   
