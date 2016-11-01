@@ -1,17 +1,16 @@
-RNACI_FUNTYPE SEXP make_dataframe_default_colnames(const int n)
+static inline SEXP make_dataframe_default_colnames(const int ncols)
 {
   R_INIT;
-  int i;
   int buflen;
   SEXP ret;
   
-  buflen = (int) (ceil(log10((double)n)) + 1.);
-  char *buf = malloc(buflen * sizeof(*buf));
+  buflen = (int) (ceil(log10((double)ncols)) + 1.);
+  char *buf = (char*) R_alloc(buflen, sizeof(*buf));
   buf[0] = 'X';
   
-  newRlist(ret, n);
+  newRlist(ret, ncols);
   
-  for (i=0; i<n; i++)
+  for (int i=0; i<ncols; i++)
   {
     sprintf(buf+1, "%d", i+1);
     buflen = (int) (ceil(log10((double)i+2)) + 1.);
@@ -19,32 +18,29 @@ RNACI_FUNTYPE SEXP make_dataframe_default_colnames(const int n)
     SET_VECTOR_ELT(ret, i, mkCharLen(buf, buflen));
   }
   
-  free(buf);
-  
   R_END;
   return ret;
 }
 
-RNACI_FUNTYPE SEXP make_dataframe_default_rownames(int n)
+static inline SEXP make_dataframe_default_rownames(int nrows)
 {
   R_INIT;
   int i;
   SEXP ret_names;
   
-  newRvec(ret_names, n, "int");
+  newRvec(ret_names, nrows, "int");
   
-  for(i=0; i<n; i++)
-    INT(ret_names,i) = i + 1;
+  for(i=0; i<nrows; i++)
+    INT(ret_names, i) = i + 1;
   
   R_END;
   return ret_names;
 }
 
-RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
+RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, ...)
 {
   R_INIT;
-  int i;
-  int nrow = 0;
+  int nrows = 0;
   SEXP R_df;
   SEXP R_default_rownames;
   SEXP R_default_colnames;
@@ -52,11 +48,11 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
   va_list listPointer;
   
   // Construct list
-  newRlist(R_df, n);
+  newRlist(R_df, ncols);
   
-  va_start(listPointer, n);
+  va_start(listPointer, ncols);
   
-  for(i=0; i<n; i++)
+  for (int i=0; i<ncols; i++)
   {
     tmp = va_arg(listPointer, SEXP);
     
@@ -68,11 +64,12 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
   // Set names
   set_list_as_df(R_df);
   
-  if (is_Rnull(R_rownames))
+  if (R_rownames == RNULL)
   {
-    if(n)
-        nrow = length(VECTOR_ELT(R_df, 0));
-    R_default_rownames = make_dataframe_default_rownames(nrow);
+    if (ncols)
+      nrows = LENGTH(VECTOR_ELT(R_df, 0));
+    
+    R_default_rownames = make_dataframe_default_rownames(nrows);
     set_df_rownames(R_df, R_default_rownames);
   }
   else
@@ -80,7 +77,7 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
   
   if (is_Rnull(R_colnames))
   {
-    R_default_colnames = make_dataframe_default_colnames(n);
+    R_default_colnames = make_dataframe_default_colnames(ncols);
     set_df_colnames(R_df, R_default_colnames);
   }
   else

@@ -95,8 +95,6 @@ RNACI_FUNTYPE int is_integer(SEXP x);
 RNACI_FUNTYPE void PRINT(SEXP x);
 
 // structures_dataframes.c
-RNACI_FUNTYPE SEXP make_dataframe_default_colnames(const int n);
-RNACI_FUNTYPE SEXP make_dataframe_default_rownames(int n);
 RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...);
 
 // structures_lists.c
