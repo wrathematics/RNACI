@@ -2,6 +2,7 @@ Version 0.4.0:
   * Clean up internals; better internal guarding.
   * Deprecate non-double float functions.
   * Create build system for non-header-only uses.
+  * Fixed dataframe naming bug (Christian Heckendorf).
 
 Version 0.3.0:
   * Fixed warnings visible with -Wall -pedantic.
