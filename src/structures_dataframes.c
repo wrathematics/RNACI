@@ -44,6 +44,7 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
 {
   R_INIT;
   int i;
+  int nrow = 0;
   SEXP R_df;
   SEXP R_default_rownames;
   SEXP R_default_colnames;
@@ -69,7 +70,9 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...)
   
   if (is_Rnull(R_rownames))
   {
-    R_default_rownames = make_dataframe_default_rownames(n);
+    if(n)
+        nrow = length(VECTOR_ELT(R_df, 0));
+    R_default_rownames = make_dataframe_default_rownames(nrow);
     set_df_rownames(R_df, R_default_rownames);
   }
   else
