@@ -22,8 +22,7 @@ fi
 mkdir $OUTDIR
 
 OUTFILE_H="${OUTDIR}/RNACI.h"
-cp "${PROJROOT}/src/API.h" ${OUTFILE_H}
-sed -i -e "s/RNACI_FUNTYPE//g" ${OUTFILE_H}
+sed -e "s/RNACI_FUNTYPE//g" < "${PROJROOT}/src/API.h" >> ${OUTFILE_H}
 
 OUTFILE="${OUTDIR}/RNACI.c"
 
