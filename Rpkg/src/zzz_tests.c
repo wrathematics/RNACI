@@ -42,12 +42,13 @@ SEXP test_print()
 {
   R_INIT;
   SEXP a;
-  int i, j;
   
-  newRmat(a, 2, 2, "double");
+  int nrow = 3;
+  int ncol = 2;
+  newRmat(a, nrow, ncol, "double");
   
-  for (j=0; j<2; j++)
-    for (i=0; i<2; i++)
+  for (int j=0; j<ncol; j++)
+    for (int i=0; i<nrow; i++)
       MatDBL(a, i, j) = i+j;
   
   PRINT(a);
