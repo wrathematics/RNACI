@@ -4,6 +4,9 @@ static inline SEXP make_dataframe_default_colnames(const int ncols)
   int buflen;
   SEXP ret;
   
+  if (ncols == 0)
+    return RNULL;
+  
   buflen = (int) (ceil(log10((double)ncols)) + 1.);
   char *buf = (char*) R_alloc(buflen, sizeof(*buf));
   buf[0] = 'X';
@@ -63,6 +66,7 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, .
   
   // Set names
   set_list_as_df(R_df);
+  
   
   if (R_rownames == RNULL)
   {
