@@ -1,17 +1,23 @@
-all: headeronlysrc regularsrc
+all: clean headeronlysrc regularsrc Rpackage
 
 builddir:
 	mkdir -p build/
 
 headeronlysrc: builddir
-	./utils/build_ho.sh
+	cd utils && ./build_ho.sh
 
 regularsrc: builddir
 	cd utils && ./build.sh
 
-Rpackage: regularsrc
+Rpackage: cleanup headeronlysrc
 	cp build/headeronly/RNACI.h Rpkg/src/ && R CMD INSTALL Rpkg
 
 
-clean:
+
+cleanup:
+	cd Rpkg && ./cleanup
+
+cleansrc:
 	rm -rf build/*
+
+clean: cleanup cleansrc
