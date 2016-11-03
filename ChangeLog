@@ -3,6 +3,7 @@ Version 0.4.0:
   * Deprecate non-double float functions.
   * Create build system for non-header-only uses.
   * Fixed dataframe naming bug (Christian Heckendorf).
+  * Fixed segfault when creating 0-len dataframes in make_dataframe().
 
 Version 0.3.0:
   * Fixed warnings visible with -Wall -pedantic.
