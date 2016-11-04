@@ -1,0 +1,37 @@
+%\VignetteIndexEntry{RNACI-guide}
+
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\newcommand{\thispackage}{\pkg{RNACI}\xspace}
+
+\input{./include/preamble}
+
+
+\mytitle{Guide to the\\ \pkg{RNACI} Package}
+\mysubtitle{Utilities for \R's native \C\ interface}
+\myauthor{Drew Schmidt\\ \texttt{wrathematics@gmail.com} 
+\\[.8cm]
+Wei-Chen Chen \\ \texttt{wccsnow@gmail.com} 
+}
+\myversion{0.1.0}
+
+
+\begin{document}
+
+\begin{figure}[h]
+\vspace{-.5in}
+  \begin{minipage}[c]{8.5in}
+  \hspace{-1.0in}
+  \includegraphics[width=8in,height=10in]{./cover/cover.pdf}
+  \end{minipage}
+\end{figure}
+
+\makefirstfew
+
+\input{./include/01-intro}
+\input{./include/02-linking}
+\input{./include/04-use}
+\input{./include/03-specification}
+\input{./include/05-questions}
+
+\end{document}

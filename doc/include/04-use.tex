@@ -1,0 +1,100 @@
+\section{Example Usage}\label{example}
+
+
+\subsection{Basic Example}
+
+Suppose you have a \C function \code{int fib(int n)} which produces the n'th 
+Fibonacci number:
+\begin{lstlisting}[language=fanC,title=Fibonacci]
+int fib(n)
+{
+  if (n == 0 || n == 1)
+    return 1;
+  else
+    return fib(n-1) + fib(n-1);
+}
+\end{lstlisting}
+
+To wrap this for \R with \thispackage, you 
+\begin{lstlisting}[language=fanC,title=Fibonacci Wrapper]
+#include <RNACI.h>
+
+SEXP fib_wrap(SEXP n)
+{
+  R_INIT;
+  SEXP ret;
+  newRvec(ret, 1, "int");
+  
+  INT(ret) = fib(INT(n));
+  
+  R_END;
+  return ret;
+}
+\end{lstlisting}
+
+This may look verbose --- and really it is --- but for complicated examples, 
+the tools begin to shine.  So far, what we have seen isn't really ``better'', 
+just different (although I obviously prefer it).  The convenience offered by 
+\thispackage begins to show itself when we deal with managing lists, however.
+
+Suppose we wanted, for example, to return both n and 
+the n'th Fibonacci number in a list.  In \R's native \C interface, this is a 
+labyrinthine nightmare, but managing return lists is very simple with 
+\thispackage:
+
+\begin{lstlisting}[language=fanC,title=Fibonacci Wrapper 2]
+#include <RNACI.h>
+
+SEXP fib_wrap(SEXP n)
+{
+  R_INIT;
+  SEXP R_list, R_list_names, nth_fib;
+  newRvec(nth_fib, 1, "int");
+  
+  INT(nth_fib) = fib(INT(n));
+  
+  R_list_names = make_list_names(2, "n", "nth.fib");
+  R_list = make_list(R_list_names, 2, n, nth_fib);
+  
+  R_END;
+  return R_list;
+}
+\end{lstlisting}
+
+You probably know that really I should be instituting a copy of n here; this is 
+true of \pkg{Rcpp} and the pure native \C interface as well.
+
+Note that \code{INT(n)} is a shorthand for \code{INT(n, 0)}, which is itself 
+shorthand for \R's \code{INTEGER(n)[0]}.  Other values may be substituted, e.g. 
+\code{INT(n, i)} for \code{INTEGER(n)[i]}.  See \secref{specification} for more 
+information.  
+
+A native version of this simple example (without \thispackage) 
+might look like:
+
+\begin{lstlisting}[language=fanC,title=Fibonacci Wrapper 2 - Native Interface]
+#include <R.h>
+#include <Rinternals.h>
+
+SEXP fib_wrap(SEXP n)
+{
+  SEXP R_list, R_list_names, nth_fib;
+  PROTECT(nth_fib = allocVector(INTSXP, 1));
+  
+  INTEGER(nth_fib)[0] = fib(INTEGER(n)[0]);
+  
+  PROTECT(R_list = allocVector(VECSXP, 2));
+  PROTECT(R_list_names = allocVector(STRSXP, 2));
+  
+  SET_VECTOR_ELT(R_list, 0, n);
+  SET_VECTOR_ELT(R_list, 1, nth_fib);
+  
+  SET_STRING_ELT(RET_NAMES, 0, mkChar("n"));
+  SET_STRING_ELT(RET_NAMES, 1, mkChar("nth.fib")); 
+  
+  UNPROTECT(3)
+  return R_list;
+}
+\end{lstlisting}
+
+
