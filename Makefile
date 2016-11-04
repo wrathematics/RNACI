@@ -9,8 +9,16 @@ headeronlysrc: builddir
 regularsrc: builddir
 	cd utils && ./build.sh
 
-Rpackage: cleanup headeronlysrc
-	cp build/headeronly/RNACI.h Rpkg/src/ && R CMD INSTALL Rpkg
+
+### R package
+Rpkg_roxygenize:
+	Rscript -e "roxygen2::roxygenize(\"Rpkg/\")"
+
+Rpkg_RNACIze: cleanup headeronlysrc
+	cp build/headeronly/RNACI.h Rpkg/src/ 
+
+Rpkg: Rpkg_roxygenize Rpkg_RNACIze
+	R CMD INSTALL Rpkg
 
 
 
