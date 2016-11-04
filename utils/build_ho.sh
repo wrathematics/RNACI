@@ -3,6 +3,8 @@
 export PROJROOT="../"
 export OUTDIR="${PROJROOT}/build/headeronly/"
 
+echo "Building header-only..."
+
 COMMENT_FILE(){
   cat $1 | sed -e 's/^/\/\/ /' >> $OUTFILE
 }

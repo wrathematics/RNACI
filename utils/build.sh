@@ -3,6 +3,8 @@
 export PROJROOT="../"
 export OUTDIR="${PROJROOT}/build/regular/"
 
+echo "Building regular..."
+
 COMMENT_FILE(){
   cat $1 | sed -e 's/^/\/\/ /' >> $OUTFILE
 }
