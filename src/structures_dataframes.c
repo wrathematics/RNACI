@@ -79,9 +79,13 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, .
   else
     set_df_rownames(R_df, R_rownames);
   
-  if (is_Rnull(R_colnames))
+  if (R_colnames == RNULL)
   {
-    R_default_colnames = make_dataframe_default_colnames(ncols);
+    if (ncols == 0)
+      R_default_colnames = make_dataframe_default_rownames(0);
+    else
+      R_default_colnames = RNULL;
+    
     set_df_colnames(R_df, R_default_colnames);
   }
   else
