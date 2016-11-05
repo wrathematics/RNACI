@@ -57,6 +57,20 @@ OK()
 
 
 
+### External pointers
+TESTING("external pointers")
+
+ptr <- RNACI_createptr()
+CHECK(class(ptr), "myptr")
+
+test <- capture.output(RNACI_getptr(ptr))
+truth <- "1.00 1.41 1.73 2.00 "
+CHECK(test, truth)
+
+OK()
+
+
+### misc
 TESTING("misc")
 
 test <- capture.output(invisible(.Call("RNACI_print")))
