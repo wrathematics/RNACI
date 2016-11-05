@@ -35,3 +35,22 @@ truth <- data.frame()
 CHECK(test, truth)
 
 OK()
+
+
+
+### Lists
+TESTING("lists")
+
+test <- RNACI_list()
+truth <- list(a=a, b=b)
+CHECK(test, truth)
+
+test <- RNACI_list_nonames()
+names(truth) <- NULL
+CHECK(test, truth)
+
+test <- RNACI_list_empty()
+truth <- list()
+CHECK(test, truth)
+
+OK()
