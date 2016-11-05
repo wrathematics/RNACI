@@ -81,6 +81,9 @@ void __ignore_me_just_here_for_semicolons();
 
 #define setRclass(x,name) __Rsetclass(x, name);
 
+// misc
+#define Rputchar(c) Rprintf("%c", c)
+
 
 
 // floats.c
