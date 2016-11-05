@@ -54,3 +54,13 @@ truth <- list()
 CHECK(test, truth)
 
 OK()
+
+
+
+TESTING("misc")
+
+test <- capture.output(invisible(.Call("RNACI_print")))
+truth <- capture.output(print(matrix(c(0:2, 1:3), 3, 2)))
+CHECK(test, truth)
+
+OK()

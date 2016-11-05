@@ -2,7 +2,7 @@
 
 
 // Printing
-SEXP test_print()
+SEXP RNACI_print()
 {
   R_INIT;
   SEXP a;
