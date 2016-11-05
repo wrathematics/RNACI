@@ -55,3 +55,14 @@ static inline SEXP __Rmatalloc(int m, int n, char *type, int init)
   UNPROTECT(1);
   return RET;
 }
+
+static inline SEXP __Rsetclass(SEXP x, char *name)
+{
+  R_INIT;
+  SEXP class;
+  newRvec(class, 1, "str");
+  SET_STRING_ELT(class, 0, mkChar(name));
+  classgets(x, class);
+  R_END;
+  return class;
+}

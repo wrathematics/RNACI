@@ -55,17 +55,18 @@
 #define DBLP(x) (REAL(x))
 
 // External pointers
-#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE)
+#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);UNPROTECT(1);
 #define getRptr(ptr) R_ExternalPtrAddr(ptr);
 
 #define newRfreeptrfun(FNAME,TYPE,FREEFUN) \
-static void FNAME(SEXP ptr) \
+static inline void FNAME(SEXP ptr) \
 { \
   if (NULL == R_ExternalPtrAddr(ptr)) return; \
   TYPE *tmp = (TYPE *) R_ExternalPtrAddr(ptr); \
   FREEFUN(tmp); \
   R_ClearExternalPtr(ptr); \
-}
+} \
+void __ignore_me_just_here_for_semicolons();
 
 // gc guards
 #define R_INIT int __RNACI_SEXP_protect_counter=0
@@ -77,6 +78,8 @@ static void FNAME(SEXP ptr) \
 #define newRvec(x,...) RNACI_PT(x=__Rvecalloc(OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
 // #define newRmat(x,m,n,type) RNACI_PT(x=__Rmatalloc(m,n,type,false))
 #define newRmat(x,m,...) RNACI_PT(x=__Rmatalloc(m,OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
+
+#define setRclass(x,name) __Rsetclass(x, name);
 
 
 
