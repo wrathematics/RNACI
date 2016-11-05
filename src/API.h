@@ -58,7 +58,7 @@
 #define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);UNPROTECT(1);
 #define getRptr(ptr) R_ExternalPtrAddr(ptr);
 
-#define newRfreeptrfun(FNAME,TYPE,FREEFUN) \
+#define newRptrfreefun(FNAME,TYPE,FREEFUN) \
 static inline void FNAME(SEXP ptr) \
 { \
   if (NULL == R_ExternalPtrAddr(ptr)) return; \

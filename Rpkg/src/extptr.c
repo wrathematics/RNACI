@@ -2,7 +2,7 @@
 
 #define LEN 4
 
-newRfreeptrfun(myextptrfinfun, double, free)
+newRptrfreefun(myextptrfinfun, double, free)
 
 SEXP RNACI_createptr()
 {
