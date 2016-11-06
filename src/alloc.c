@@ -21,9 +21,9 @@ static inline SEXP __Rvecalloc(int n, char *type, int init)
   else if (strncmp(type, "str", 1) == 0 || strncmp(type, "char*", 1) == 0)
     PROTECT(RET = allocVector(STRSXP, n));
   else
-    return NULL;
+    error("unknown allocation type\n");
   
-  UNPROTECT(1);
+  __RNACI_SEXP_protect_counter++;
   return RET;
 }
 
@@ -50,19 +50,17 @@ static inline SEXP __Rmatalloc(int m, int n, char *type, int init)
   else if (strncmp(type, "str", 1) == 0 || strncmp(type, "char*", 1) == 0)
     PROTECT(RET = allocMatrix(STRSXP, m, n));
   else
-    return NULL;
+    error("unknown allocation type\n");
   
-  UNPROTECT(1);
+  __RNACI_SEXP_protect_counter++;
   return RET;
 }
 
 static inline SEXP __Rsetclass(SEXP x, char *name)
 {
-  R_INIT;
   SEXP class;
   newRvec(class, 1, "str");
   SET_STRING_ELT(class, 0, mkChar(name));
   classgets(x, class);
-  R_END;
   return class;
 }

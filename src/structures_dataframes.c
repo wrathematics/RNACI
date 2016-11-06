@@ -1,6 +1,5 @@
 static inline SEXP make_dataframe_default_colnames(const int ncols)
 {
-  R_INIT;
   int buflen;
   SEXP ret;
   
@@ -21,28 +20,24 @@ static inline SEXP make_dataframe_default_colnames(const int ncols)
     SET_VECTOR_ELT(ret, i, mkCharLen(buf, buflen));
   }
   
-  R_END;
   return ret;
 }
 
 static inline SEXP make_dataframe_default_rownames(int nrows)
 {
-  R_INIT;
   int i;
   SEXP ret_names;
   
   newRvec(ret_names, nrows, "int");
   
-  for(i=0; i<nrows; i++)
+  for (i=0; i<nrows; i++)
     INT(ret_names, i) = i + 1;
   
-  R_END;
   return ret_names;
 }
 
 RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, ...)
 {
-  R_INIT;
   int nrows = 0;
   SEXP R_df;
   SEXP R_default_rownames;
@@ -92,6 +87,5 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, .
     set_df_colnames(R_df, R_colnames);
   
   
-  R_END;
   return R_df;
 }

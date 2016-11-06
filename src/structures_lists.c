@@ -1,6 +1,5 @@
 RNACI_FUNTYPE SEXP make_list_names(int n, ...)
 {
-  R_INIT;
   int i;
   char *tmp;
   SEXP R_list_names;
@@ -10,7 +9,7 @@ RNACI_FUNTYPE SEXP make_list_names(int n, ...)
   
   va_start(listPointer, n);
   
-  for(i=0; i<n; i++)
+  for (i=0; i<n; i++)
   {
     tmp = va_arg(listPointer, char *);
   
@@ -19,15 +18,12 @@ RNACI_FUNTYPE SEXP make_list_names(int n, ...)
   
   va_end(listPointer);
   
-  R_END;
   return R_list_names;
 }
 
 RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...)
 {
-  R_INIT;
   int i;
-/*  const int n = LENGTH(R_list_names);*/
   SEXP tmp, R_list;
   va_list listPointer;
   
@@ -35,7 +31,7 @@ RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...)
   
   va_start(listPointer, n);
   
-  for(i=0; i<n; i++)
+  for (i=0; i<n; i++)
   {
     tmp = va_arg(listPointer, SEXP);
   
@@ -44,10 +40,8 @@ RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...)
   
   va_end(listPointer);
   
-/*  setAttrib(R_list, R_NamesSymbol, R_list_names);*/
-  if (!is_Rnull(R_list_names))
+  if (R_list_names != RNULL)
     set_list_names(R_list, R_list_names);
   
-  R_END;
   return R_list;
 }

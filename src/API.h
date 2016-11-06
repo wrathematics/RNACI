@@ -19,6 +19,8 @@
 
 #define RNACI_IGNORED -1
 
+static unsigned int __RNACI_SEXP_protect_counter = 0;
+
 #define __RNACI_INT(x,y,...) INTEGER(x)[y]
 #define __RNACI_DBL(x,y,...) REAL(x)[y]
 #define __RNACI_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
@@ -26,16 +28,6 @@
 #define RNACI_PT(x) PROTECT((x)); (__RNACI_SEXP_protect_counter)++
 
 #define OPTIONALARG1(a,b,c,...) (a),(b),(c)
-
-// /* Misc stuff */
-// #if __STDC_VERSION__ >= 199901L
-// #define dbstart printf("DEBUGGING in %s Started\n", __func__);int __RNACI_debug_printing_counter=0
-// #define dbstop printf("DEBUGGING in %s Ended\n", __func__)
-// #else
-// #define dbstart int __RNACI_debug_printing_counter=0
-// #endif
-// 
-// #define dbshow printf("%d\n", __RNACI_debug_printing_counter);__RNACI_debug_printing_counter++;
 
 
 
@@ -54,8 +46,16 @@
 #define INTP(x) (INTEGER(x))
 #define DBLP(x) (REAL(x))
 
+// gc guards
+#define R_INIT 
+
+#define R_END UNPROTECT(__RNACI_SEXP_protect_counter); __RNACI_SEXP_protect_counter=0;
+
+#define hidefromGC(x) RNACI_PT(x)
+#define unhideGC() R_END
+
 // External pointers
-#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);UNPROTECT(1);
+#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);__RNACI_SEXP_protect_counter++;
 #define getRptr(ptr) R_ExternalPtrAddr(ptr);
 
 #define newRptrfreefun(FNAME,TYPE,FREEFUN) \
@@ -68,16 +68,12 @@ static inline void FNAME(SEXP ptr) \
 } \
 void __ignore_me_just_here_for_semicolons();
 
-// gc guards
-#define R_INIT int __RNACI_SEXP_protect_counter=0
-#define R_END (UNPROTECT(__RNACI_SEXP_protect_counter))
-
 // allocators
-#define newRlist(x,n) RNACI_PT(x=__Rvecalloc(n, "vec", false))
+#define newRlist(x,n) (x=__Rvecalloc(n, "vec", false))
 // #define newRvec(x,n,type) RNACI_PT(x=__Rvecalloc(n, type,false))
-#define newRvec(x,...) RNACI_PT(x=__Rvecalloc(OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
+#define newRvec(x,...) (x=__Rvecalloc(OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
 // #define newRmat(x,m,n,type) RNACI_PT(x=__Rmatalloc(m,n,type,false))
-#define newRmat(x,m,...) RNACI_PT(x=__Rmatalloc(m,OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
+#define newRmat(x,m,...) (x=__Rmatalloc(m,OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
 
 #define setRclass(x,name) __Rsetclass(x, name);
 
