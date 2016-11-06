@@ -8,12 +8,13 @@ SEXP RNACI_list()
   SEXP a, b;
   SEXP R_list, R_list_names;
   
-  a = RNACI_intvec();
-  b = RNACI_dblvec();
+  hidefromGC(a = RNACI_intvec());
+  hidefromGC(b = RNACI_dblvec());
   
   R_list_names = make_list_names(2, "a", "b");
   R_list = make_list(R_list_names, 2, a, b);
   
+  unhideGC();
   return R_list;
 }
 
@@ -22,15 +23,18 @@ SEXP RNACI_list_nonames()
   SEXP a, b;
   SEXP R_list;
   
-  a = RNACI_intvec();
-  b = RNACI_dblvec();
+  hidefromGC(a = RNACI_intvec());
+  hidefromGC(b = RNACI_dblvec());
   
   R_list = make_list(RNULL, 2, a, b);
   
+  unhideGC();
   return R_list;
 }
 
 SEXP RNACI_list_empty()
 {
-  return make_list(RNULL, 0);
+  SEXP R_df = make_list(RNULL, 0);
+  unhideGC();
+  return R_df;
 }

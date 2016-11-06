@@ -15,6 +15,7 @@ SEXP RNACI_createptr()
   newRptr(x, Rptr, myextptrfinfun);
   setRclass(Rptr, "myptr");
   
+  unhideGC();
   return Rptr;
 }
 
@@ -26,5 +27,6 @@ SEXP RNACI_getptr(SEXP Rptr)
   
   Rputchar('\n');
   
+  unhideGC();
   return RNULL;
 }

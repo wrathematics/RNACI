@@ -4,7 +4,6 @@
 
 SEXP RNACI_intvec()
 {
-  R_INIT;
   SEXP x;
   
   newRvec(x, NELTS, "int");
@@ -12,13 +11,12 @@ SEXP RNACI_intvec()
   for (int i=0; i<NELTS; i++)
     INT(x, i) = i+1;
   
-  R_END;
+  unhideGC();
   return x;
 }
 
 SEXP RNACI_dblvec()
 {
-  R_INIT;
   SEXP x;
   
   newRvec(x, NELTS, "dbl");
@@ -26,6 +24,6 @@ SEXP RNACI_dblvec()
   for (int i=0; i<NELTS; i++)
     DBL(x, i) = 123456 / (double)(i+1);
   
-  R_END;
+  unhideGC();
   return x;
 }

@@ -4,7 +4,6 @@
 // Printing
 SEXP RNACI_print()
 {
-  R_INIT;
   SEXP a;
   
   int nrow = 3;
@@ -17,6 +16,6 @@ SEXP RNACI_print()
   
   PRINT(a);
   
-  R_END;
+  unhideGC();
   return RNULL;
 }
