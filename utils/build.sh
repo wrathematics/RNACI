@@ -3,7 +3,7 @@
 export PROJROOT="../"
 export OUTDIR="${PROJROOT}/build/regular/"
 
-echo "Building regular..."
+echo -n "Building regular..."
 
 COMMENT_FILE(){
   cat $1 | sed -e 's/^/\/\/ /' >> $OUTFILE
@@ -37,8 +37,13 @@ ECHO_FILE "\n\n"
 
 ECHO_FILE "#include \"RNACI.h\"\n"
 
+ECHO_FILE "unsigned int RNACI_ptct = 0;\n\n"
+
 for f in `ls ${PROJROOT}/src/*.c`; do
   ECHO_FILE "// ${f}"
   CAT_FILE $f
   ECHO_FILE "\n\n"
 done
+
+
+echo "DONE!"

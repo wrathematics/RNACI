@@ -3,7 +3,7 @@
 export PROJROOT="../"
 export OUTDIR="${PROJROOT}/build/headeronly/"
 
-echo "Building header-only..."
+echo -n "Building header-only..."
 
 COMMENT_FILE(){
   cat $1 | sed -e 's/^/\/\/ /' >> $OUTFILE
@@ -22,6 +22,9 @@ if [ -d $OUTDIR ]; then
 fi
 
 mkdir $OUTDIR
+
+echo "unsigned int RNACI_ptct = 0;" > "${OUTDIR}/global.c"
+
 
 OUTFILE="${OUTDIR}/RNACI.h"
 
@@ -52,3 +55,7 @@ for f in `ls ${PROJROOT}/src/*.c`; do
 done
 
 ECHO_FILE "#endif"
+
+
+
+echo "DONE!"
