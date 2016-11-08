@@ -19,16 +19,15 @@
 
 #define RNACI_IGNORED -1
 
-static unsigned int __RNACI_SEXP_protect_counter = 0;
-
 #define __RNACI_INT(x,y,...) INTEGER(x)[y]
 #define __RNACI_DBL(x,y,...) REAL(x)[y]
 #define __RNACI_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
 
-#define RNACI_PT(x) PROTECT((x)); (__RNACI_SEXP_protect_counter)++
+#define RNACI_PT(x) {PROTECT((x)); RNACIptct(1);}
 
 #define OPTIONALARG1(a,b,c,...) (a),(b),(c)
 
+extern unsigned int RNACI_ptct;
 
 
 // defs
@@ -47,15 +46,13 @@ static unsigned int __RNACI_SEXP_protect_counter = 0;
 #define DBLP(x) (REAL(x))
 
 // gc guards
-#define R_INIT 
-
-#define R_END UNPROTECT(__RNACI_SEXP_protect_counter); __RNACI_SEXP_protect_counter=0;
-
+#define R_INIT
+#define R_END UNPROTECT(RNACIptct(0)); RNACIptct(-1);
 #define hidefromGC(x) RNACI_PT(x)
 #define unhideGC() R_END
 
 // External pointers
-#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);__RNACI_SEXP_protect_counter++;
+#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);RNACIptct(1);
 #define getRptr(ptr) R_ExternalPtrAddr(ptr);
 
 #define newRptrfreefun(FNAME,TYPE,FREEFUN) \

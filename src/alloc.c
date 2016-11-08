@@ -1,3 +1,13 @@
+static inline unsigned int RNACIptct(const int increment)
+{
+  if (increment > 0)
+    RNACI_ptct++;
+  else if (increment == -1)
+    RNACI_ptct = 0;
+  
+  return RNACI_ptct;
+}
+
 static inline SEXP __Rvecalloc(int n, char *type, int init)
 {
   SEXP RET;
@@ -23,7 +33,7 @@ static inline SEXP __Rvecalloc(int n, char *type, int init)
   else
     error("unknown allocation type\n");
   
-  __RNACI_SEXP_protect_counter++;
+  RNACIptct(1);
   return RET;
 }
 
@@ -52,7 +62,7 @@ static inline SEXP __Rmatalloc(int m, int n, char *type, int init)
   else
     error("unknown allocation type\n");
   
-  __RNACI_SEXP_protect_counter++;
+  RNACIptct(1);
   return RET;
 }
 
