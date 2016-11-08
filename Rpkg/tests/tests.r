@@ -78,3 +78,15 @@ truth <- capture.output(print(matrix(c(0:2, 1:3), 3, 2)))
 CHECK(test, truth)
 
 OK()
+
+
+
+### complex
+TESTING("complex/multi-file usage")
+
+test <- .Call("RNACI_complex")
+# truth <- capture.output(print(matrix(c(0:2, 1:3), 3, 2)))
+# CHECK(test, truth)
+test
+
+OK()
