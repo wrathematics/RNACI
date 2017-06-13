@@ -1,3 +1,7 @@
+Version 0.5.0:
+  * Add boolean/logical allocators.
+  * Make is_Rnull() a simple macro.
+
 Version 0.4.0:
   * Clean up internals; better internal guarding.
   * Deprecate non-double float functions.
