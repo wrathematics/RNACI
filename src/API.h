@@ -13,9 +13,9 @@
 
 
 // Internals, please excuse the mess
-#define RNACI_VERSION 0.4.0
+#define RNACI_VERSION 0.5.0
 
-#define RNACI_MAX(m,n) m<n?n:m
+#define RNACI_MAX(m,n) ((m)<(n)?(n):(m))
 
 #define RNACI_IGNORED -1
 
@@ -84,7 +84,7 @@ RNACI_FUNTYPE int fis_zero(double x);
 RNACI_FUNTYPE int fequals(double x, double y);
 
 // misc.c
-RNACI_FUNTYPE int is_Rnull(SEXP x);
+#define is_Rnull(x) ((x) == R_NilValue)
 RNACI_FUNTYPE int is_Rnan(SEXP x);
 RNACI_FUNTYPE int is_Rna(SEXP x);
 RNACI_FUNTYPE int is_double(SEXP x);
