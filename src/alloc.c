@@ -28,6 +28,13 @@ static inline SEXP __Rvecalloc(int n, char *type, int init)
     if (init)
       memset(DBLP(RET), 0, n*sizeof(double));
   }
+  else if (strncmp(type, "boolean", 1) == 0 || strncmp(type, "logical", 1) == 0)
+  {
+    PROTECT(RET = allocVector(LGLSXP, n));
+    
+    if (init)
+      memset(INTP(RET), 0, n*sizeof(int));
+  }
   else if (strncmp(type, "str", 1) == 0 || strncmp(type, "char*", 1) == 0)
     PROTECT(RET = allocVector(STRSXP, n));
   else
@@ -56,6 +63,13 @@ static inline SEXP __Rmatalloc(int m, int n, char *type, int init)
     
     if (init)
       memset(DBLP(RET), 0, m*n*sizeof(double));
+  }
+  else if (strncmp(type, "boolean", 1) == 0 || strncmp(type, "logical", 1) == 0))
+  {
+    PROTECT(RET = allocMatrix(LGLSXP, m, n));
+    
+    if (init)
+      memset(INTP(RET), 0, m*n*sizeof(int));
   }
   else if (strncmp(type, "str", 1) == 0 || strncmp(type, "char*", 1) == 0)
     PROTECT(RET = allocMatrix(STRSXP, m, n));
