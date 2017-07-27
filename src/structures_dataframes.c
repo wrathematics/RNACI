@@ -10,7 +10,7 @@ static inline SEXP make_dataframe_default_colnames(const int ncols)
   char *buf = (char*) R_alloc(buflen, sizeof(*buf));
   buf[0] = 'X';
   
-  newRlist(ret, ncols);
+  PROTECT(ret = allocVector(VECSXP, ncols));
   
   for (int i=0; i<ncols; i++)
   {
@@ -20,6 +20,7 @@ static inline SEXP make_dataframe_default_colnames(const int ncols)
     SET_VECTOR_ELT(ret, i, mkCharLen(buf, buflen));
   }
   
+  UNPROTECT(1);
   return ret;
 }
 
@@ -28,15 +29,16 @@ static inline SEXP make_dataframe_default_rownames(int nrows)
   int i;
   SEXP ret_names;
   
-  newRvec(ret_names, nrows, "int");
+  PROTECT(ret_names = allocVector(INTSXP, nrows));
   
   for (i=0; i<nrows; i++)
     INT(ret_names, i) = i + 1;
   
+  UNPROTECT(1);
   return ret_names;
 }
 
-RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, ...)
+RNACI_FUNTYPE SEXP _make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, ...)
 {
   int nrows = 0;
   SEXP R_df;
@@ -46,7 +48,7 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, .
   va_list listPointer;
   
   // Construct list
-  newRlist(R_df, ncols);
+  PROTECT(R_df = allocVector(VECSXP, ncols));
   
   va_start(listPointer, ncols);
   
@@ -68,24 +70,31 @@ RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int ncols, .
     if (ncols)
       nrows = LENGTH(VECTOR_ELT(R_df, 0));
     
-    R_default_rownames = make_dataframe_default_rownames(nrows);
+    PROTECT(R_default_rownames = make_dataframe_default_rownames(nrows));
     set_df_rownames(R_df, R_default_rownames);
+    UNPROTECT(1);
   }
   else
     set_df_rownames(R_df, R_rownames);
   
+  
   if (R_colnames == RNULL)
   {
     if (ncols == 0)
-      R_default_colnames = make_dataframe_default_rownames(0);
+    {
+      PROTECT(R_default_colnames = make_dataframe_default_rownames(0));
+      set_df_colnames(R_df, R_default_colnames);
+      UNPROTECT(1);
+    }
     else
+    {
       R_default_colnames = RNULL;
-    
-    set_df_colnames(R_df, R_default_colnames);
+      set_df_colnames(R_df, R_default_colnames);
+    }
   }
   else
     set_df_colnames(R_df, R_colnames);
   
-  
+  UNPROTECT(1);
   return R_df;
 }

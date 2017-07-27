@@ -23,11 +23,11 @@
 #define __RNACI_DBL(x,y,...) REAL(x)[y]
 #define __RNACI_STR(x,y,...) ((char*)CHAR(STRING_ELT(x,y)))
 
-#define RNACI_PT(x) {PROTECT((x)); RNACIptct(1);}
+#define RNACI_PT(x) {PROTECT((x)); RNACI_ptct++;}
 
 #define OPTIONALARG1(a,b,c,...) (a),(b),(c)
 
-extern unsigned int RNACI_ptct;
+static unsigned int RNACI_ptct = 0;
 
 
 // defs
@@ -46,13 +46,13 @@ extern unsigned int RNACI_ptct;
 #define DBLP(x) (REAL(x))
 
 // gc guards
-#define R_INIT
-#define R_END UNPROTECT(RNACIptct(0)); RNACIptct(-1);
+#define R_INIT // deprecated
+#define R_END {while (RNACI_ptct > 0){UNPROTECT(1); RNACI_ptct--;}}
 #define hidefromGC(x) RNACI_PT(x)
 #define unhideGC() R_END
 
 // External pointers
-#define newRptr(ptr,Rptr,fin) PROTECT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue));R_RegisterCFinalizerEx(Rptr, fin, TRUE);RNACIptct(1);
+#define newRptr(ptr,Rptr,fin) {RNACI_PT(Rptr = R_MakeExternalPtr(ptr, R_NilValue, R_NilValue)); R_RegisterCFinalizerEx(Rptr, fin, TRUE);}
 #define getRptr(ptr) R_ExternalPtrAddr(ptr);
 
 #define newRptrfreefun(FNAME,TYPE,FREEFUN) \
@@ -66,13 +66,15 @@ static inline void FNAME(SEXP ptr) \
 void __ignore_me_just_here_for_semicolons();
 
 // allocators
-#define newRlist(x,n) (x=__Rvecalloc(n, "vec", false))
-// #define newRvec(x,n,type) RNACI_PT(x=__Rvecalloc(n, type,false))
-#define newRvec(x,...) (x=__Rvecalloc(OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
-// #define newRmat(x,m,n,type) RNACI_PT(x=__Rmatalloc(m,n,type,false))
-#define newRmat(x,m,...) (x=__Rmatalloc(m,OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)))
+#define newRlist(x,n) {RNACI_PT((x)=__Rvecalloc(n, "vec", false));}
+#define newRvec(x,...) {RNACI_PT((x)=__Rvecalloc(OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)));}
+#define newRmat(x,m,...) {RNACI_PT((x)=__Rmatalloc(m,OPTIONALARG1(__VA_ARGS__,false,RNACI_IGNORED)));}
 
 #define setRclass(x,name) __Rsetclass(x, name);
+
+#define make_list_names(x, n, ...) {RNACI_PT((x) = _make_list_names(n, __VA_ARGS__));}
+#define make_list(x, n, ...) {RNACI_PT((x) = _make_list(n, __VA_ARGS__));}
+#define make_dataframe(x, rownames, colnames, n, ...) {RNACI_PT((x) = _make_dataframe(rownames, colnames, n, __VA_ARGS__));}
 
 // misc
 #define Rputchar(c) Rprintf("%c", c)
@@ -94,11 +96,11 @@ RNACI_FUNTYPE int is_integer(SEXP x);
 RNACI_FUNTYPE void PRINT(SEXP x);
 
 // structures_dataframes.c
-RNACI_FUNTYPE SEXP make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...);
+// RNACI_FUNTYPE SEXP _make_dataframe(SEXP R_rownames, SEXP R_colnames, int n, ...);
 
 // structures_lists.c
-RNACI_FUNTYPE SEXP make_list_names(int n, ...);
-RNACI_FUNTYPE SEXP make_list(SEXP R_list_names, const int n, ...);
+RNACI_FUNTYPE SEXP _make_list_names(int n, ...);
+RNACI_FUNTYPE SEXP _make_list(SEXP R_list_names, const int n, ...);
 
 // structures_misc.c
 RNACI_FUNTYPE void set_list_names(SEXP R_list, SEXP R_names);
