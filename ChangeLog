@@ -1,6 +1,9 @@
 Version 0.5.0:
+  * Fixed several rchk warnings.
   * Add boolean/logical allocators.
   * Make is_Rnull() a simple macro.
+  * Rewrote allocator internals.
+  * Changed API for make_list/dataframe and friends.
 
 Version 0.4.0:
   * Clean up internals; better internal guarding.
