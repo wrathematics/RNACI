@@ -10,7 +10,7 @@ COMMENT_FILE(){
 }
 
 ECHO_FILE(){
-  echo -e $1 >> $OUTFILE
+  echo  $1 >> $OUTFILE
 }
 
 CAT_FILE(){
